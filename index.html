@@ -1,0 +1,3572 @@
+<!doctype html>
+<html lang="vi" data-theme="day">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Lê Việt Hoàng — AI Automation</title>
+<meta name="description" content="Lê Việt Hoàng — Xin chào mình là Hoàng. AI Automation, n8n, Gemini, Python, Playwright, FFmpeg." />
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Crect width='16' height='16' fill='%2323174c'/%3E%3Crect x='2' y='2' width='12' height='12' fill='%233d2473'/%3E%3Crect x='7' y='3' width='2' height='2' fill='%23ffe074'/%3E%3Crect x='5' y='5' width='6' height='2' fill='%23ffe074'/%3E%3Crect x='3' y='7' width='10' height='2' fill='%23ff9be2'/%3E%3Crect x='5' y='9' width='6' height='2' fill='%23ffe074'/%3E%3Crect x='7' y='11' width='2' height='2' fill='%23ffe074'/%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=VT323&display=swap" rel="stylesheet" />
+<style>
+  /* =========================================================
+     DAY THEME (DEFAULT): SUNNY PASTEL DREAM 16-BIT ARCADE
+     ========================================================= */
+  :root,
+  html[data-theme="day"] {
+    --bg-base: #9ad8ff;
+    --bg-body-grad:
+      radial-gradient(circle at 18% 16%, rgba(255, 240, 175, 0.55) 0%, transparent 40%),
+      radial-gradient(circle at 84% 34%, rgba(255, 179, 217, 0.45) 0%, transparent 42%),
+      radial-gradient(circle at 20% 68%, rgba(132, 247, 218, 0.38) 0%, transparent 44%),
+      linear-gradient(180deg, #5eb8ff 0%, #8ed2ff 24%, #d3c8ff 54%, #ffc7db 82%, #ffe3b8 100%);
+    --sky-scrim-bg: linear-gradient(
+      180deg,
+      rgba(56, 48, 118, 0.04) 0%,
+      rgba(92, 66, 150, 0.08) 60%,
+      rgba(66, 44, 118, 0.14) 100%
+    );
+
+    --panel: rgba(255, 251, 246, 0.94);
+    --panel-alt: #f2eaff;
+    --slot-bg: #26194f;
+
+    --border-outer: #32216b;
+    --border-soft: #59439e;
+    --border-bright: #ff5d9e;
+    --pixel-shadow: rgba(45, 26, 98, 0.34);
+
+    --text: #1c133c;
+    --muted: #4a3c78;
+    --heading-sky: #fff7b2;
+    --heading-card: #b81e70;
+    --role-text: #1e1442;
+    --role-bg: rgba(255, 246, 214, 0.94);
+    --role-border: #32216b;
+    --accent-bold: #b83700;
+
+    --gold: #ffd447;
+    --gold-deep: #b86c08;
+    --pink: #ff69ad;
+    --pink-deep: #a12062;
+    --mint: #53f0c8;
+    --mint-deep: #13785f;
+    --mint-text: #0d6e58;
+
+    --result-bg: #e8fcf5;
+    --result-text: #123c33;
+    --result-num: #0c7860;
+
+    --city-fill: #5a4696;
+    --cloud-1: #ffffff;
+    --cloud-2: #ffe8f4;
+    --cloud-3: #ffd4dc;
+    --cloud-shadow: #b8b8ec;
+
+    --handheld-top: #745cd4;
+    --handheld-bot: #533ca8;
+    --handheld-edge-hi: #fff2ff;
+    --handheld-edge-lo: #311f6e;
+
+    --footer-bg: linear-gradient(180deg, rgba(64, 42, 128, 0.88) 0%, rgba(42, 26, 92, 0.97) 26%);
+    --footer-text: #fff9ff;
+    --footer-muted: #e2d5ff;
+
+    --font-pixel: "VT323", monospace;
+    --font-body: "Be Vietnam Pro", system-ui, -apple-system, sans-serif;
+    --measure: 66ch;
+    --orbit-r: 92vh;
+    --orbit-deg: 42deg;
+  }
+
+  /* =========================================================
+     NIGHT THEME: LUMINOUS NEON-TWILIGHT PIXEL RPG
+     ========================================================= */
+  html[data-theme="night"] {
+    --bg-base: #211548;
+    --bg-body-grad:
+      radial-gradient(circle at 15% 18%, rgba(255, 155, 226, 0.30) 0%, transparent 42%),
+      radial-gradient(circle at 86% 36%, rgba(132, 252, 224, 0.18) 0%, transparent 40%),
+      radial-gradient(circle at 22% 62%, rgba(255, 156, 135, 0.24) 0%, transparent 44%),
+      linear-gradient(180deg, #21144a 0%, #321d68 35%, #442378 68%, #26154e 100%);
+    --sky-scrim-bg: linear-gradient(
+      180deg,
+      rgba(18, 10, 44, 0.08) 0%,
+      rgba(22, 12, 50, 0.22) 55%,
+      rgba(22, 12, 50, 0.42) 100%
+    );
+
+    --panel: rgba(34, 23, 72, 0.90);
+    --panel-alt: rgba(54, 38, 106, 0.94);
+    --slot-bg: #180f38;
+
+    --border-outer: #a98eff;
+    --border-soft: #8f72e0;
+    --border-bright: #ffd4f4;
+    --pixel-shadow: rgba(12, 5, 32, 0.78);
+
+    --text: #fff9ff;
+    --muted: #dfd3f7;
+    --heading-sky: #ffe074;
+    --heading-card: #ff9be2;
+    --role-text: #ffe074;
+    --role-bg: rgba(31, 19, 68, 0.9);
+    --role-border: rgba(255, 224, 116, 0.88);
+    --accent-bold: #ffe074;
+
+    --gold: #ffe074;
+    --gold-deep: #b36b14;
+    --pink: #ff9be2;
+    --pink-deep: #a33b84;
+    --mint: #84fce0;
+    --mint-deep: #1b7a68;
+    --mint-text: #84fce0;
+
+    --result-bg: rgba(20, 56, 68, 0.88);
+    --result-text: #fff9ff;
+    --result-num: #84fce0;
+
+    --city-fill: #24144c;
+    --cloud-1: #d46db6;
+    --cloud-2: #a852ab;
+    --cloud-3: #ffd6e6;
+    --cloud-shadow: #5e2e78;
+
+    --handheld-top: #503d91;
+    --handheld-bot: #372868;
+    --handheld-edge-hi: #cbb8ff;
+    --handheld-edge-lo: #765bb8;
+
+    --footer-bg: linear-gradient(180deg, rgba(36, 20, 76, 0.78) 0%, rgba(20, 11, 46, 0.96) 30%);
+    --footer-text: #fff9ff;
+    --footer-muted: #dfd3f7;
+  }
+
+  * { box-sizing: border-box; }
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 24px;
+    overflow-x: clip;
+  }
+  body {
+    margin: 0;
+    min-height: 100vh;
+    min-height: 100dvh;
+    background-color: var(--bg-base);
+    background-image: var(--bg-body-grad);
+    color: var(--text);
+    font: 400 16.5px/1.68 var(--font-body);
+    overflow-x: clip;
+    position: relative;
+    transition: background-color 300ms ease, color 220ms ease;
+  }
+
+  a { color: inherit; }
+  a:focus-visible,
+  button:focus-visible,
+  summary:focus-visible {
+    outline: 3px solid var(--gold);
+    outline-offset: 4px;
+  }
+
+  h1, h2, h3 {
+    font-family: var(--font-pixel);
+    font-weight: 400;
+    line-height: 1.15;
+    margin: 0;
+    letter-spacing: 0.015em;
+  }
+
+  .wrap {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 24px;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* =========================================================
+     TOP PIXEL XP SCROLL BAR + DAY/NIGHT CARTRIDGE SWITCH
+     ========================================================= */
+  .xp-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+    z-index: 60;
+    background: rgba(20, 12, 46, 0.35);
+    pointer-events: none;
+  }
+  .xp-fill {
+    height: 100%;
+    width: 0%;
+    background: repeating-linear-gradient(
+      90deg,
+      var(--pink) 0 12px,
+      var(--gold) 12px 24px,
+      var(--mint) 24px 36px
+    );
+    box-shadow: 0 0 12px var(--gold);
+    transition: width 90ms steps(4, end);
+  }
+
+  .theme-switch {
+    position: fixed;
+    top: 16px;
+    right: 18px;
+    z-index: 55;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 8px;
+    border: 0;
+    cursor: pointer;
+    background: var(--panel);
+    color: var(--text);
+    box-shadow:
+      0 -3px 0 0 var(--border-outer),
+      0 3px 0 0 var(--border-outer),
+      -3px 0 0 0 var(--border-outer),
+      3px 0 0 0 var(--border-outer),
+      0 6px 0 0 var(--pixel-shadow),
+      0 0 22px rgba(255, 212, 71, 0.25);
+    transition: transform 90ms steps(2, end), box-shadow 120ms ease;
+  }
+  .theme-switch:hover {
+    transform: translateY(2px);
+    box-shadow:
+      0 -3px 0 0 var(--border-bright),
+      0 3px 0 0 var(--border-bright),
+      -3px 0 0 0 var(--border-bright),
+      3px 0 0 0 var(--border-bright),
+      0 4px 0 0 var(--pixel-shadow),
+      0 0 26px rgba(255, 105, 173, 0.45);
+  }
+  .theme-switch:active {
+    transform: translateY(4px);
+    box-shadow:
+      0 -3px 0 0 var(--border-bright),
+      0 3px 0 0 var(--border-bright),
+      -3px 0 0 0 var(--border-bright),
+      3px 0 0 0 var(--border-bright),
+      0 1px 0 0 var(--pixel-shadow);
+  }
+  .switch-slot {
+    width: 26px;
+    height: 26px;
+    display: grid;
+    place-items: center;
+    transition: transform 120ms steps(2, end), opacity 140ms ease, background-color 140ms ease;
+  }
+  html[data-theme="day"] .switch-sun {
+    background: var(--gold);
+    box-shadow: 0 -2px 0 0 #32216b, 0 2px 0 0 #32216b, -2px 0 0 0 #32216b, 2px 0 0 0 #32216b;
+  }
+  html[data-theme="day"] .switch-moon { opacity: 0.42; }
+  html[data-theme="night"] .switch-moon {
+    background: #4e3796;
+    box-shadow: 0 -2px 0 0 var(--gold), 0 2px 0 0 var(--gold), -2px 0 0 0 var(--gold), 2px 0 0 0 var(--gold);
+  }
+  html[data-theme="night"] .switch-sun { opacity: 0.42; }
+
+  #fx-canvas {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 40;
+    pointer-events: none;
+  }
+
+  /* =========================================================
+     DUAL-MODE LIVING PIXEL SKY + CELESTIAL ARC
+     ========================================================= */
+  .sky-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+    background: #1a1040;
+  }
+
+  .sky-bands-day,
+  .sky-bands-sunset,
+  .sky-bands-night {
+    position: absolute;
+    inset: 0;
+    transition: opacity 1.15s ease;
+  }
+
+  .sky-bands-day {
+    background: linear-gradient(
+      180deg,
+      #42a5f5 0%,   #42a5f5 13%,
+      #5ab8ff 13%,  #5ab8ff 26%,
+      #7cc9ff 26%,  #7cc9ff 39%,
+      #a5d8ff 39%,  #a5d8ff 52%,
+      #cbe0ff 52%,  #cbe0ff 64%,
+      #ebd3ff 64%,  #ebd3ff 75%,
+      #ffc8dd 75%,  #ffc8dd 86%,
+      #ffd9be 86%,  #ffd9be 94%,
+      #ffebb8 94%,  #ffebb8 100%
+    );
+    opacity: 1;
+  }
+
+  .sky-bands-night {
+    background: linear-gradient(
+      180deg,
+      #1a1040 0%,   #1a1040 12%,
+      #291859 12%,  #291859 24%,
+      #3e2478 24%,  #3e2478 36%,
+      #59318d 36%,  #59318d 48%,
+      #823f99 48%,  #823f99 60%,
+      #b54d9c 60%,  #b54d9c 72%,
+      #e06594 72%,  #e06594 83%,
+      #f88787 83%,  #f88787 92%,
+      #ffc087 92%,  #ffc087 100%
+    );
+    opacity: 0;
+  }
+
+  .sky-bands-sunset {
+    background: linear-gradient(
+      180deg,
+      #392169 0%,   #6b3482 32%,
+      #c24d86 60%,  #ff857a 84%,
+      #ffd08a 100%
+    );
+    opacity: 0;
+    transition: opacity 0.65s ease;
+  }
+  html.sky-arcing .sky-bands-sunset { opacity: 0.72; }
+  html[data-theme="night"] .sky-bands-day { opacity: 0; }
+  html[data-theme="night"] .sky-bands-night { opacity: 1; }
+
+  .sky-dither {
+    position: absolute;
+    inset: 0;
+    opacity: 0.14;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8' shape-rendering='crispEdges'%3E%3Crect x='0' y='0' width='2' height='2' fill='%23ffffff' fill-opacity='0.45'/%3E%3Crect x='4' y='4' width='2' height='2' fill='%231e1345' fill-opacity='0.22'/%3E%3C/svg%3E");
+    background-size: 8px 8px;
+  }
+
+  .sky-glow {
+    position: absolute;
+    left: 50%;
+    bottom: -14vh;
+    width: min(1150px, 145vw);
+    height: 60vh;
+    transform: translateX(-50%);
+    background: radial-gradient(
+      ellipse at center,
+      rgba(255, 240, 175, 0.52) 0%,
+      rgba(255, 165, 210, 0.30) 46%,
+      transparent 76%
+    );
+  }
+
+  .celestial-orbit {
+    position: absolute;
+    left: 55%;
+    top: 82vh;
+    width: 0;
+    height: 0;
+    z-index: 1;
+    transform: rotate(var(--orbit-deg));
+    transition: transform 1.35s cubic-bezier(0.32, 0.08, 0.24, 1);
+  }
+  html.orbit-instant .celestial-orbit,
+  html.orbit-instant .celestial-sprite { transition: none !important; }
+
+  .celestial-arm {
+    position: absolute;
+    left: 0;
+    top: 0;
+    transform: translate(-50%, -50%);
+  }
+  .arm-sun { top: calc(-1 * var(--orbit-r)); }
+  .arm-moon { top: var(--orbit-r); }
+
+  .celestial-sprite {
+    transform: rotate(calc(-1 * var(--orbit-deg)));
+    transition: transform 1.35s cubic-bezier(0.32, 0.08, 0.24, 1);
+  }
+
+  .pixel-sun {
+    display: block;
+    width: 92px;
+    height: 92px;
+    filter: drop-shadow(0 0 28px rgba(255, 224, 116, 0.9));
+    animation: sunPulse 3.8s ease-in-out infinite;
+  }
+  @keyframes sunPulse {
+    0%, 100% { filter: drop-shadow(0 0 24px rgba(255, 224, 116, 0.85)); }
+    50% { filter: drop-shadow(0 0 36px rgba(255, 232, 138, 1)); }
+  }
+
+  .pixel-moon {
+    display: block;
+    width: 72px;
+    height: 72px;
+    filter: drop-shadow(0 0 20px rgba(255, 224, 116, 0.82));
+  }
+
+  .sky-layer {
+    position: absolute;
+    inset: -32px 0;
+    will-change: transform;
+  }
+  .sky-layer-clouds { z-index: 2; }
+  .sky-layer-city { z-index: 3; }
+
+  .sky-stars-svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+    shape-rendering: crispEdges;
+    transition: opacity 380ms ease;
+  }
+  html[data-theme="day"] .sky-stars-svg { opacity: 0.36; }
+  html[data-theme="night"] .sky-stars-svg { opacity: 1; }
+
+  .star-twinkle-a { animation: twinkleA 2.6s steps(3, end) infinite; }
+  .star-twinkle-b { animation: twinkleB 3.7s steps(3, end) infinite; }
+  @keyframes twinkleA {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+  @keyframes twinkleB {
+    0%, 100% { opacity: 0.35; }
+    50% { opacity: 1; }
+  }
+
+  .shooting-star {
+    position: absolute;
+    top: 14%;
+    left: -120px;
+    width: 76px;
+    height: 4px;
+    background: linear-gradient(90deg, rgba(255, 155, 226, 0) 0%, #ff9be2 55%, #ffe074 88%, #ffffff 100%);
+    box-shadow: 0 0 12px #ffe074;
+    transform: rotate(18deg);
+    opacity: 0;
+    animation: cometFly 8.5s linear infinite;
+  }
+  html[data-theme="day"] .shooting-star { display: none; }
+  @keyframes cometFly {
+    0%, 72% { transform: translate3d(0, 0, 0) rotate(18deg); opacity: 0; }
+    75% { opacity: 1; }
+    88% { transform: translate3d(125vw, 34vh, 0) rotate(18deg); opacity: 0.95; }
+    92%, 100% { transform: translate3d(135vw, 37vh, 0) rotate(18deg); opacity: 0; }
+  }
+
+  .cloud-track {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 12vh;
+    height: 240px;
+    overflow: hidden;
+  }
+  .sky-clouds-svg {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 120%;
+    min-width: 1080px;
+    height: auto;
+    opacity: 0.88;
+    shape-rendering: crispEdges;
+    animation: cloudDrift 32s ease-in-out infinite alternate;
+  }
+  @keyframes cloudDrift {
+    0% { transform: translate3d(-4%, 0, 0); }
+    100% { transform: translate3d(3%, -5px, 0); }
+  }
+
+  .sky-city-svg {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    min-width: 960px;
+    height: auto;
+    opacity: 0.9;
+    shape-rendering: crispEdges;
+  }
+  .city-win-blink { animation: winBlink 3.6s steps(2, end) infinite; }
+  @keyframes winBlink {
+    0%, 100% { opacity: 0.95; }
+    50% { opacity: 0.25; }
+  }
+
+  .sky-scrim {
+    position: absolute;
+    inset: 0;
+    background: var(--sky-scrim-bg);
+  }
+
+  /* =========================================================
+     STEPPED PIXEL BOXES & TACTILE BUTTONS
+     ========================================================= */
+  .pixel-box {
+    position: relative;
+    background: var(--panel);
+    padding: 24px 26px;
+    box-shadow:
+      0 -4px 0 0 var(--border-outer),
+      0 4px 0 0 var(--border-outer),
+      -4px 0 0 0 var(--border-outer),
+      4px 0 0 0 var(--border-outer),
+      inset 0 4px 0 0 rgba(255, 255, 255, 0.35),
+      inset 0 -4px 0 0 rgba(30, 18, 66, 0.22),
+      0 12px 0 -4px var(--pixel-shadow),
+      8px 12px 0 -4px var(--pixel-shadow),
+      0 0 32px rgba(255, 155, 226, 0.16);
+    transition: translate 120ms steps(2, end), box-shadow 160ms ease, background-color 280ms ease;
+  }
+  .pixel-box:hover {
+    translate: 0 -4px;
+    box-shadow:
+      0 -4px 0 0 var(--border-bright),
+      0 4px 0 0 var(--border-bright),
+      -4px 0 0 0 var(--border-bright),
+      4px 0 0 0 var(--border-bright),
+      inset 0 4px 0 0 rgba(255, 255, 255, 0.42),
+      inset 0 -4px 0 0 rgba(30, 18, 66, 0.22),
+      0 14px 0 -4px var(--pixel-shadow),
+      8px 14px 0 -4px var(--pixel-shadow),
+      0 0 38px rgba(255, 105, 173, 0.28);
+  }
+
+  /* =========================================================
+     GAME ENTRANCES & HERO SCROLL SPLIT
+     ========================================================= */
+  header.hero,
+  main,
+  section.block,
+  footer {
+    overflow-x: clip;
+  }
+
+  @keyframes heroFlyLeft {
+    0% { opacity: 0; transform: translate3d(-220px, 10px, 0) skewX(15deg) rotate(-3deg) scale(0.84); }
+    100% { opacity: 1; transform: translate3d(0, 0, 0) skewX(0deg) rotate(0deg) scale(1); }
+  }
+  @keyframes roleWipeLTR {
+    0% { opacity: 0.1; clip-path: inset(0 100% 0 0); transform: translate3d(-56px, 0, 0) skewX(14deg); }
+    100% { opacity: 1; clip-path: inset(0 0 0 0); transform: translate3d(0, 0, 0) skewX(0deg); }
+  }
+  @keyframes rpgBeam {
+    0% { left: -36px; opacity: 0; }
+    18% { opacity: 0.95; }
+    85% { opacity: 0.85; }
+    100% { left: 108%; opacity: 0; }
+  }
+  @keyframes heroBtnIn {
+    0% { opacity: 0; transform: translate3d(-84px, 30px, 0) skewX(10deg) scale(0.74); }
+    100% { opacity: 1; transform: translate3d(0, 0, 0) skewX(0deg) scale(1); }
+  }
+  @keyframes consoleFlyIn {
+    0% { opacity: 0; transform: translate3d(220px, 34px, 0) skewX(-12deg) rotate(-5deg) scale(0.80); }
+    100% { opacity: 1; transform: translate3d(0, 0, 0) skewX(0deg) rotate(0deg) scale(1); }
+  }
+
+  .hero-copy {
+    translate: calc(var(--hero-p, 0) * -170px) calc(var(--hero-p, 0) * -22px);
+    rotate: calc(var(--hero-p, 0) * -4deg);
+    opacity: calc(1 - var(--hero-p, 0) * 0.72);
+    will-change: translate, rotate, opacity;
+  }
+  .console-stage {
+    translate: calc(var(--hero-p, 0) * 185px) calc(var(--hero-p, 0) * -18px);
+    rotate: calc(var(--hero-p, 0) * 6deg);
+    opacity: calc(1 - var(--hero-p, 0) * 0.72);
+    will-change: translate, rotate, opacity;
+    animation: consoleFlyIn 0.72s cubic-bezier(0.14, 1.32, 0.24, 1) 0.12s both;
+  }
+
+  .hero h1 { animation: heroFlyLeft 0.64s cubic-bezier(0.14, 1.32, 0.26, 1) 0.04s both; }
+  .hero .role {
+    position: relative;
+    overflow: hidden;
+    animation: roleWipeLTR 0.82s steps(22, end) 0.18s both;
+  }
+  .hero .role::after {
+    content: "";
+    position: absolute;
+    top: -4px;
+    bottom: -4px;
+    width: 28px;
+    left: -36px;
+    pointer-events: none;
+    background: linear-gradient(90deg, transparent, rgba(255, 247, 178, 0.9), #ffd447, transparent);
+    animation: rpgBeam 0.82s steps(16, end) 0.18s both;
+  }
+  .hero .contact .btn:nth-child(1) { animation: heroBtnIn 0.50s cubic-bezier(0.14, 1.34, 0.28, 1) 0.36s both; }
+  .hero .contact .btn:nth-child(2) { animation: heroBtnIn 0.50s cubic-bezier(0.14, 1.34, 0.28, 1) 0.45s both; }
+  .hero .contact .btn:nth-child(3) { animation: heroBtnIn 0.50s cubic-bezier(0.14, 1.34, 0.28, 1) 0.54s both; }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 11px 18px;
+    text-decoration: none;
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 1.25;
+    color: #fff9ff;
+    background: #4f3899;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow:
+      0 -3px 0 0 #2b1c5e,
+      0 3px 0 0 #2b1c5e,
+      -3px 0 0 0 #2b1c5e,
+      3px 0 0 0 #2b1c5e,
+      inset 0 3px 0 0 rgba(255, 255, 255, 0.28),
+      0 7px 0 0 #23154d,
+      0 12px 20px rgba(24, 14, 56, 0.25);
+    transition: transform 90ms steps(2, end), box-shadow 90ms steps(2, end), background-color 120ms ease;
+  }
+  html[data-theme="night"] .btn {
+    box-shadow:
+      0 -3px 0 0 #b79eff,
+      0 3px 0 0 #8f74e0,
+      -3px 0 0 0 #b79eff,
+      3px 0 0 0 #8f74e0,
+      inset 0 3px 0 0 rgba(255, 255, 255, 0.24),
+      0 7px 0 0 #211447,
+      0 12px 22px rgba(10, 5, 26, 0.35);
+  }
+  .btn:hover {
+    background: #6247b8;
+    transform: translateY(2px);
+    box-shadow:
+      0 -3px 0 0 var(--border-bright),
+      0 3px 0 0 var(--border-bright),
+      -3px 0 0 0 var(--border-bright),
+      3px 0 0 0 var(--border-bright),
+      inset 0 3px 0 0 rgba(255, 255, 255, 0.32),
+      0 5px 0 0 #23154d,
+      0 0 22px rgba(255, 105, 173, 0.38);
+  }
+  .btn:active {
+    transform: translateY(5px);
+    box-shadow:
+      0 -3px 0 0 var(--border-bright),
+      0 3px 0 0 var(--border-bright),
+      -3px 0 0 0 var(--border-bright),
+      3px 0 0 0 var(--border-bright),
+      inset 0 3px 0 0 rgba(0, 0, 0, 0.2),
+      0 2px 0 0 #23154d;
+  }
+
+  .btn.primary {
+    background: var(--gold);
+    color: #21123d;
+    box-shadow:
+      0 -3px 0 0 #fff7d1,
+      0 3px 0 0 #cc7a0e,
+      -3px 0 0 0 #ffea9c,
+      3px 0 0 0 #cc7a0e,
+      inset 0 3px 0 0 rgba(255, 255, 255, 0.58),
+      0 7px 0 0 var(--gold-deep),
+      0 0 26px rgba(255, 212, 71, 0.45);
+  }
+  .btn.primary::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -60%;
+    width: 30%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.28), transparent);
+    transform: skewX(-20deg);
+    animation: btnShine 4.5s steps(12, end) infinite;
+    pointer-events: none;
+  }
+  @keyframes btnShine {
+    0%, 72% { left: -60%; }
+    100% { left: 135%; }
+  }
+  .btn.primary:hover {
+    background: #ffe88a;
+    transform: translateY(2px);
+    box-shadow:
+      0 -3px 0 0 #fff9de,
+      0 3px 0 0 #cc7a0e,
+      -3px 0 0 0 #fff0b8,
+      3px 0 0 0 #cc7a0e,
+      inset 0 3px 0 0 rgba(255, 255, 255, 0.68),
+      0 5px 0 0 var(--gold-deep),
+      0 0 34px rgba(255, 212, 71, 0.65);
+  }
+  .btn.primary:active {
+    transform: translateY(5px);
+    box-shadow:
+      0 -3px 0 0 #fff0b8,
+      0 3px 0 0 #cc7a0e,
+      -3px 0 0 0 #fff0b8,
+      3px 0 0 0 #cc7a0e,
+      inset 0 2px 0 0 rgba(0, 0, 0, 0.15),
+      0 2px 0 0 var(--gold-deep);
+  }
+
+  /* =========================================================
+     HERO: CONCISE TEXT + 4-SCREEN PLAYABLE HANDHELD CONSOLE
+     ========================================================= */
+  .hero {
+    padding: 68px 0 56px;
+    position: relative;
+  }
+
+  .hero .wrap {
+    display: grid;
+    grid-template-columns: 1.16fr 0.95fr;
+    gap: 44px;
+    align-items: center;
+  }
+
+  .hero h1 {
+    font-size: clamp(54px, 7.6vw, 90px);
+    line-height: 1.1;
+    color: #ffffff;
+    text-shadow:
+      -3px -3px 0 #261657,
+       3px -3px 0 #261657,
+      -3px  3px 0 #261657,
+       3px  3px 0 #261657,
+       6px  6px 0 #170c3b,
+       0 0 32px rgba(255, 140, 200, 0.55);
+  }
+
+  .hero .role {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin: 20px 0 0;
+    padding: 8px 16px;
+    font-family: var(--font-pixel);
+    font-size: clamp(21px, 2.5vw, 27px);
+    line-height: 1.18;
+    color: var(--role-text);
+    background: var(--role-bg);
+    box-shadow:
+      0 -3px 0 0 var(--role-border),
+      0 3px 0 0 var(--role-border),
+      -3px 0 0 0 var(--role-border),
+      3px 0 0 0 var(--role-border),
+      4px 5px 0 0 var(--pixel-shadow);
+  }
+
+  .role-cursor {
+    display: inline-block;
+    width: 10px;
+    height: 16px;
+    background: var(--pink);
+    box-shadow: 0 0 10px var(--pink);
+    animation: cursorBlink 1.05s steps(2, end) infinite;
+    flex-shrink: 0;
+  }
+  @keyframes cursorBlink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.15; }
+  }
+
+  .contact {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-top: 30px;
+  }
+
+  /* Handheld Console Container */
+  .console-stage {
+    justify-self: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 100%;
+    position: relative;
+  }
+
+  .console-spark {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    pointer-events: none;
+    z-index: 3;
+    animation: twinkleA 2.2s steps(3, end) infinite;
+  }
+  .console-spark.s1 { top: -8px; left: -14px; }
+  .console-spark.s2 { top: 28%; right: -16px; animation-delay: -1.1s; }
+  .console-spark.s3 { bottom: 48px; left: -12px; animation-delay: -0.6s; }
+
+  .handheld {
+    width: min(304px, 80vw);
+    max-width: 100%;
+    padding: 14px 14px 16px;
+    background: linear-gradient(180deg, var(--handheld-top) 0%, var(--handheld-bot) 100%);
+    position: relative;
+    transform: rotate(-1.4deg);
+    animation: consoleBob 4.2s ease-in-out infinite;
+    box-shadow:
+      0 -4px 0 0 var(--handheld-edge-hi),
+      0 4px 0 0 var(--handheld-edge-lo),
+      -4px 0 0 0 var(--handheld-edge-hi),
+      4px 0 0 0 var(--handheld-edge-lo),
+      inset 0 4px 0 0 rgba(255, 255, 255, 0.34),
+      inset 0 -4px 0 0 rgba(20, 12, 46, 0.65),
+      12px 15px 0 0 var(--pixel-shadow),
+      0 0 48px rgba(255, 105, 173, 0.35);
+    transition: background 280ms ease;
+  }
+  .handheld:hover,
+  .handheld:focus-within {
+    animation-play-state: paused;
+  }
+  @keyframes consoleBob {
+    0%, 100% { transform: rotate(-1.4deg) translateY(0); }
+    50% { transform: rotate(-0.4deg) translateY(-7px); }
+  }
+
+  .handheld-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    padding: 0 4px;
+  }
+  .handheld-led { display: flex; align-items: center; gap: 6px; }
+  .led-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--mint);
+    box-shadow: 0 0 12px var(--mint), 0 0 2px #fff;
+    animation: ledPulse 1.6s steps(2, end) infinite;
+  }
+  .led-sig {
+    width: 6px;
+    height: 6px;
+    background: #ff5d22;
+    box-shadow: 0 0 8px rgba(255, 93, 34, 0.8);
+  }
+  @keyframes ledPulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.45; }
+  }
+  .speaker-grille { display: flex; gap: 4px; }
+  .speaker-grille i {
+    display: block;
+    width: 4px;
+    height: 8px;
+    background: #1b1138;
+    box-shadow: inset 0 -2px 0 rgba(255, 255, 255, 0.22);
+  }
+
+  /* 9:16 Game Screen Viewport */
+  .screen-bezel {
+    width: 100%;
+    aspect-ratio: 9 / 16;
+    padding: 6px;
+    background: #120b26;
+    box-shadow:
+      0 -3px 0 0 #211545,
+      0 3px 0 0 #7a60bd,
+      -3px 0 0 0 #211545,
+      3px 0 0 0 #7a60bd,
+      inset 0 0 20px rgba(83, 240, 200, 0.22);
+  }
+
+  .game-screen {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    cursor: pointer;
+    touch-action: manipulation;
+    background: linear-gradient(180deg, #1b1140 0%, #2a185d 55%, #462375 100%);
+    color: #fff9ff;
+  }
+
+  /* Subtle pixel scanlines inside screen */
+  .game-screen::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0) 0 3px,
+      rgba(8, 4, 22, 0.14) 3px 4px
+    );
+    pointer-events: none;
+    z-index: 5;
+  }
+
+  .g-slide {
+    position: absolute;
+    inset: 0;
+    padding: 14px 12px;
+    display: none;
+    flex-direction: column;
+    z-index: 2;
+  }
+  .g-slide.active { display: flex; }
+
+  /* SCREEN 1: Pixel AI Chat (Typewriter) */
+  .scr-chat {
+    justify-content: flex-start;
+    gap: 9px;
+    background: linear-gradient(180deg, #160e36 0%, #241652 100%);
+  }
+  .chat-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 6px;
+    border-bottom: 2px solid #59419e;
+    font-family: var(--font-pixel);
+    font-size: 20px;
+    line-height: 1.1;
+    color: var(--gold);
+  }
+  .chat-feed {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 4px;
+  }
+  .chat-msg {
+    padding: 7px 9px;
+    font-size: 13px;
+    line-height: 1.42;
+    background: rgba(39, 25, 84, 0.96);
+    box-shadow: 0 -2px 0 0 #6b52b8, 0 2px 0 0 #6b52b8, -2px 0 0 0 #6b52b8, 2px 0 0 0 #6b52b8;
+    opacity: 0;
+    transform: translateY(4px);
+    transition: opacity 180ms steps(3, end), transform 180ms steps(3, end);
+  }
+  .chat-msg.shown {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .chat-msg.from-ai {
+    background: rgba(24, 52, 68, 0.94);
+    box-shadow: 0 -2px 0 0 #45a395, 0 2px 0 0 #45a395, -2px 0 0 0 #45a395, 2px 0 0 0 #45a395;
+  }
+  .chat-msg.from-done {
+    background: rgba(21, 70, 56, 0.96);
+    color: #9effe4;
+    font-weight: 700;
+    text-align: center;
+    box-shadow: 0 -2px 0 0 #84fce0, 0 2px 0 0 #84fce0, -2px 0 0 0 #84fce0, 2px 0 0 0 #84fce0;
+  }
+  .chat-who {
+    font-family: var(--font-pixel);
+    font-size: 18px;
+    line-height: 1;
+    color: var(--gold);
+    margin-right: 4px;
+  }
+  .chat-msg.from-ai .chat-who { color: #84fce0; }
+  .chat-typing-cursor {
+    display: inline-block;
+    width: 7px;
+    height: 12px;
+    background: #ffd447;
+    vertical-align: -1px;
+    margin-left: 3px;
+    animation: cursorBlink 0.7s steps(2, end) infinite;
+  }
+
+  /* SCREEN 2: Pixel Person at Laptop + Pixel Cat */
+  .scr-desk {
+    padding: 0;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(180deg, #21144b 0%, #3d2170 60%, #7d3c8c 100%);
+  }
+  .desk-scene {
+    width: 100%;
+    height: 100%;
+    display: block;
+    shape-rendering: crispEdges;
+  }
+  .desk-cat {
+    animation: petIdle 1.2s steps(2, end) infinite;
+    transform-box: fill-box;
+    transform-origin: center bottom;
+  }
+  .desk-tail {
+    animation: tailWag 1.1s steps(2, end) infinite;
+    transform-box: fill-box;
+    transform-origin: left bottom;
+  }
+  .desk-ponytail {
+    animation: ponytailSway 1.7s steps(2, end) infinite;
+    transform-box: fill-box;
+    transform-origin: right top;
+  }
+  @keyframes ponytailSway {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translate(-1px, 1px); }
+  }
+  .desk-hands {
+    animation: handsType 0.45s steps(2, end) infinite;
+  }
+  .desk-screen-glow {
+    animation: screenFlicker 1.8s steps(3, end) infinite;
+  }
+  @keyframes tailWag {
+    0%, 100% { transform: rotate(0deg); }
+    50% { transform: rotate(10deg); }
+  }
+  @keyframes handsType {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-1px); }
+  }
+  @keyframes screenFlicker {
+    0%, 100% { opacity: 0.95; }
+    50% { opacity: 0.65; }
+  }
+
+  /* SCREEN 3: Retro Game Start Screen */
+  .scr-start {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 14px;
+    background:
+      radial-gradient(circle at 50% 35%, rgba(255, 140, 200, 0.25) 0%, transparent 60%),
+      linear-gradient(180deg, #1d1145 0%, #381e6b 65%, #66307f 100%);
+  }
+  .start-emblem {
+    width: 44px;
+    height: 44px;
+    animation: petIdle 1.6s steps(2, end) infinite;
+  }
+  .start-title {
+    font-family: var(--font-pixel);
+    font-size: 36px;
+    line-height: 1.12;
+    color: #ffffff;
+    text-shadow: 3px 3px 0 #190d3a, 0 0 16px rgba(255, 155, 226, 0.65);
+  }
+  .start-level {
+    font-family: var(--font-pixel);
+    font-size: 22px;
+    line-height: 1.15;
+    padding: 5px 10px;
+    color: #ffe074;
+    background: rgba(21, 12, 48, 0.85);
+    box-shadow: 0 -2px 0 0 #8a70d6, 0 2px 0 0 #8a70d6, -2px 0 0 0 #8a70d6, 2px 0 0 0 #8a70d6;
+  }
+  .scr-start-btn {
+    margin-top: 8px;
+    border: 0;
+    cursor: pointer;
+    padding: 9px 18px;
+    font-family: var(--font-pixel);
+    font-size: 26px;
+    line-height: 1;
+    color: #21123d;
+    background: #ffd447;
+    box-shadow:
+      0 -3px 0 0 #fff7d1,
+      0 3px 0 0 #b86c08,
+      -3px 0 0 0 #ffea9c,
+      3px 0 0 0 #b86c08,
+      0 5px 0 0 #995804;
+    animation: pressBlink 1.1s steps(2, end) infinite;
+  }
+  .scr-start-btn:hover { background: #ffe98f; }
+  .scr-start-btn:active { transform: translateY(3px); }
+  @keyframes pressBlink {
+    0%, 100% { filter: brightness(1); }
+    50% { filter: brightness(1.18); box-shadow: 0 -3px 0 0 #fff7d1, 0 3px 0 0 #b86c08, -3px 0 0 0 #ffea9c, 3px 0 0 0 #b86c08, 0 5px 0 0 #995804, 0 0 18px #ffd447; }
+  }
+
+  /* SCREEN 4: Project Screenshots (390x693 vertical) */
+  .scr-shots {
+    padding: 0;
+    background: #140c2e;
+  }
+  .shot-viewport {
+    position: relative;
+    flex: 1;
+    width: 100%;
+    overflow: hidden;
+    background: #f8f6f2;
+  }
+  .shot-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: top center;
+    opacity: 0;
+    transition: opacity 260ms ease;
+  }
+  .shot-img.active { opacity: 1; }
+  .shot-bar {
+    position: relative;
+    z-index: 6;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 6px;
+    padding: 6px 8px;
+    background: rgba(18, 11, 38, 0.96);
+    border-top: 2px solid #6b52b8;
+  }
+  .shot-tab {
+    flex: 1;
+    border: 0;
+    cursor: pointer;
+    padding: 3px 6px;
+    font-family: var(--font-pixel);
+    font-size: 18px;
+    line-height: 1.1;
+    color: #d6c8f5;
+    background: #281a54;
+  }
+  .shot-tab[aria-pressed="true"] {
+    background: #ffd447;
+    color: #21123d;
+  }
+
+  /* 4 Position Indicator Dots (real accessible buttons) */
+  .screen-dots {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+    margin-bottom: 2px;
+  }
+  .scr-dot {
+    position: relative;
+    border: 0;
+    padding: 0;
+    width: 12px;
+    height: 12px;
+    cursor: pointer;
+    touch-action: manipulation;
+    background: #211447;
+    box-shadow: 0 -2px 0 0 #8a72cc, 0 2px 0 0 #8a72cc, -2px 0 0 0 #8a72cc, 2px 0 0 0 #8a72cc;
+    transition: transform 90ms steps(2, end), background-color 120ms ease;
+  }
+  .scr-dot::after {
+    content: "";
+    position: absolute;
+    inset: -14px -8px;
+  }
+  .scr-dot[aria-pressed="true"] {
+    background: var(--gold);
+    transform: scale(1.15);
+    box-shadow: 0 -2px 0 0 #fff7d1, 0 2px 0 0 #fff7d1, -2px 0 0 0 #fff7d1, 2px 0 0 0 #fff7d1, 0 0 10px var(--gold);
+  }
+
+  /* Handheld D-pad (Prev/Next real buttons) + A/B real buttons */
+  .handheld-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 12px;
+    padding: 0 8px;
+  }
+
+  .dpad-group {
+    position: relative;
+    width: 38px;
+    height: 38px;
+  }
+  /* Vertical & horizontal cross body */
+  .dpad-group::before {
+    content: "";
+    position: absolute;
+    left: 13px;
+    top: 0;
+    width: 12px;
+    height: 38px;
+    background: #1f1440;
+    box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.24), 2px 2px 0 rgba(0, 0, 0, 0.45);
+    pointer-events: none;
+  }
+  .dpad-group::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 13px;
+    width: 38px;
+    height: 12px;
+    background: #1f1440;
+    box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.24), 2px 2px 0 rgba(0, 0, 0, 0.45);
+    pointer-events: none;
+  }
+  .dpad-btn {
+    position: absolute;
+    top: 8px;
+    width: 19px;
+    height: 22px;
+    border: 0;
+    padding: 0;
+    background: transparent;
+    cursor: pointer;
+    touch-action: manipulation;
+    z-index: 2;
+  }
+  .dpad-btn::after {
+    content: "";
+    position: absolute;
+    inset: -11px -10px;
+  }
+  .dpad-btn.prev { left: -2px; }
+  .dpad-btn.next { right: -2px; }
+
+  .select-start {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+  .select-start span {
+    display: block;
+    width: 16px;
+    height: 6px;
+    background: #23164a;
+    box-shadow: 0 2px 0 rgba(255, 255, 255, 0.22);
+  }
+
+  .ab-btns {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+  .hw-btn {
+    position: relative;
+    border: 0;
+    padding: 0;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    touch-action: manipulation;
+    font-family: var(--font-pixel);
+    font-size: 16px;
+    line-height: 20px;
+    color: #21123d;
+    box-shadow: 0 3px 0 rgba(0, 0, 0, 0.55), inset 0 2px 0 rgba(255, 255, 255, 0.55);
+    transition: transform 80ms steps(2, end), box-shadow 80ms steps(2, end);
+  }
+  .hw-btn::after {
+    content: "";
+    position: absolute;
+    inset: -12px;
+  }
+  .hw-btn.btn-b { background: var(--pink); }
+  .hw-btn.btn-a { background: var(--gold); transform: translateY(-5px); }
+  .hw-btn.btn-b:active { transform: translateY(2px); box-shadow: 0 1px 0 rgba(0, 0, 0, 0.55); }
+  .hw-btn.btn-a:active { transform: translateY(-3px); box-shadow: 0 1px 0 rgba(0, 0, 0, 0.55); }
+
+  /* =========================================================
+     CONTENT SECTIONS
+     ========================================================= */
+  section.block { padding: 72px 0 0; }
+  .section-head { margin-bottom: 26px; }
+
+  section.block > .wrap .section-head h2,
+  section.block > .wrap > h2 {
+    font-size: clamp(38px, 4.8vw, 54px);
+    color: var(--heading-sky);
+    text-shadow:
+      -2px -2px 0 #261657,
+       2px -2px 0 #261657,
+      -2px  2px 0 #261657,
+       2px  2px 0 #261657,
+       4px  5px 0 #1b0e42,
+       0 0 22px rgba(255, 224, 116, 0.42);
+  }
+
+  .lead {
+    display: inline-block;
+    color: var(--text);
+    max-width: var(--measure);
+    margin: 12px 0 0;
+    font-size: 17px;
+    padding: 6px 12px;
+    background: rgba(255, 255, 255, 0.35);
+    box-shadow: 0 -2px 0 0 var(--border-soft), 0 2px 0 0 var(--border-soft), -2px 0 0 0 var(--border-soft), 2px 0 0 0 var(--border-soft);
+  }
+  html[data-theme="night"] .lead { background: rgba(26, 16, 62, 0.55); }
+
+  /* ---------- DỰ ÁN: UNIFORM RPG QUEST LIST + XEM CHI TIẾT ---------- */
+  .rows {
+    display: grid;
+    gap: 20px;
+  }
+
+  .row {
+    background: var(--panel);
+    padding: 22px 26px;
+    box-shadow:
+      0 -4px 0 0 var(--border-outer),
+      0 4px 0 0 var(--border-outer),
+      -4px 0 0 0 var(--border-outer),
+      4px 0 0 0 var(--border-outer),
+      inset 0 4px 0 0 rgba(255, 255, 255, 0.3),
+      7px 9px 0 -2px var(--pixel-shadow),
+      0 0 26px rgba(163, 136, 245, 0.14);
+    transition: translate 120ms steps(2, end), box-shadow 150ms ease, background-color 280ms ease;
+  }
+  .row:hover {
+    translate: 0 -4px;
+    box-shadow:
+      0 -4px 0 0 var(--border-bright),
+      0 4px 0 0 var(--border-bright),
+      -4px 0 0 0 var(--border-bright),
+      4px 0 0 0 var(--border-bright),
+      inset 0 4px 0 0 rgba(255, 255, 255, 0.36),
+      7px 11px 0 -2px var(--pixel-shadow),
+      0 0 32px rgba(255, 105, 173, 0.25);
+  }
+
+  .row-summary-grid {
+    display: grid;
+    grid-template-columns: 0.92fr 1.55fr;
+    gap: 26px;
+    align-items: start;
+  }
+
+  .quest-title {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .quest-sprite {
+    flex-shrink: 0;
+    width: 38px;
+    height: 38px;
+    display: grid;
+    place-items: center;
+    background: var(--slot-bg);
+    box-shadow:
+      0 -2px 0 0 var(--border-soft),
+      0 2px 0 0 var(--border-soft),
+      -2px 0 0 0 var(--border-soft),
+      2px 0 0 0 var(--border-soft);
+  }
+  .quest-sprite svg { animation: spriteBob 2s steps(2, end) infinite; }
+  .row:hover .quest-sprite svg { animation: spriteHop 0.45s steps(2, end) infinite; }
+  @keyframes spriteBob {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-1px); }
+  }
+  @keyframes spriteHop {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-4px); }
+  }
+
+  .row h3 {
+    font-size: 30px;
+    line-height: 1.15;
+    color: var(--heading-card);
+  }
+  .row .meta {
+    margin: 7px 0 0;
+    color: var(--mint-text);
+    font-size: 15px;
+    font-weight: 600;
+  }
+  .row-short p {
+    margin: 0;
+    max-width: var(--measure);
+  }
+
+  /* <details> Expandable Project Detail */
+  .proj-details {
+    margin-top: 14px;
+  }
+  .proj-details summary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    list-style: none;
+    cursor: pointer;
+    padding: 7px 14px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #21123d;
+    background: var(--gold);
+    box-shadow:
+      0 -2px 0 0 #fff7d1,
+      0 2px 0 0 var(--gold-deep),
+      -2px 0 0 0 #ffea9c,
+      2px 0 0 0 var(--gold-deep),
+      0 4px 0 0 var(--gold-deep);
+    transition: transform 90ms steps(2, end), background-color 120ms ease;
+  }
+  .proj-details summary::-webkit-details-marker { display: none; }
+  .proj-details summary::before {
+    content: "▶";
+    font-size: 11px;
+    display: inline-block;
+    transition: transform 120ms steps(2, end);
+  }
+  .proj-details[open] summary::before {
+    transform: rotate(90deg);
+  }
+  .proj-details summary:hover {
+    background: #ffe88a;
+    transform: translateY(1px);
+  }
+  .proj-details summary:active {
+    transform: translateY(3px);
+  }
+
+  .proj-body {
+    margin-top: 18px;
+    padding-top: 18px;
+    border-top: 2px dashed rgba(110, 86, 178, 0.42);
+  }
+  .proj-body p {
+    margin: 0;
+    max-width: var(--measure);
+  }
+
+  /* Threads Video Maker Expanded Detail Grid (description + result + stack + 5 steps) */
+  .tvm-detail-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.14fr;
+    gap: 32px;
+    align-items: start;
+  }
+
+  .result {
+    margin: 18px 0 0 !important;
+    padding: 15px 17px;
+    background: var(--result-bg);
+    color: var(--result-text);
+    font-size: 16px;
+    box-shadow:
+      inset 5px 0 0 0 var(--mint-deep),
+      0 -3px 0 0 var(--mint-deep),
+      0 3px 0 0 var(--mint-deep),
+      -3px 0 0 0 var(--mint-deep),
+      3px 0 0 0 var(--mint-deep);
+  }
+  html[data-theme="night"] .result {
+    box-shadow:
+      inset 5px 0 0 0 var(--mint),
+      0 -3px 0 0 #53b8a8,
+      0 3px 0 0 #53b8a8,
+      -3px 0 0 0 #53b8a8,
+      3px 0 0 0 #53b8a8;
+  }
+  .result b {
+    font-family: var(--font-pixel);
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 1.08;
+    color: var(--result-num);
+    display: inline-block;
+    margin-right: 4px;
+  }
+
+  .stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 20px 0 0;
+    padding: 0;
+    list-style: none;
+  }
+  .stack li {
+    font-size: 14px;
+    font-weight: 600;
+    padding: 4px 10px;
+    background: var(--panel-alt);
+    color: var(--text);
+    box-shadow:
+      0 -2px 0 0 var(--border-soft),
+      0 2px 0 0 var(--border-soft),
+      -2px 0 0 0 var(--border-soft),
+      2px 0 0 0 var(--border-soft),
+      2px 3px 0 0 var(--pixel-shadow);
+  }
+
+  /* 5-Stage Animated Pixel World Map Path inside Threads Video Maker */
+  .pipeline {
+    list-style: none;
+    margin: 0;
+    padding: 4px 0;
+    counter-reset: step;
+    position: relative;
+  }
+  .pipeline::before {
+    content: "";
+    position: absolute;
+    left: 20px;
+    top: 24px;
+    bottom: 24px;
+    width: 4px;
+    background-image: repeating-linear-gradient(
+      to bottom,
+      var(--pink) 0 10px,
+      transparent 10px 20px
+    );
+    background-size: 4px 20px;
+    animation: pathMarch 1.1s linear infinite;
+    opacity: 0.88;
+  }
+  @keyframes pathMarch {
+    0% { background-position: 0 0; }
+    100% { background-position: 0 20px; }
+  }
+  .pipeline li {
+    counter-increment: step;
+    display: grid;
+    grid-template-columns: 42px 1fr;
+    gap: 14px;
+    align-items: start;
+    position: relative;
+    padding-bottom: 14px;
+  }
+  .pipeline li:last-child { padding-bottom: 0; }
+  .pipeline li::before {
+    content: counter(step);
+    position: relative;
+    z-index: 2;
+    width: 42px;
+    height: 42px;
+    display: grid;
+    place-items: center;
+    font-family: var(--font-pixel);
+    font-size: 28px;
+    line-height: 1;
+    color: #21123d;
+    background: var(--gold);
+    box-shadow:
+      0 -3px 0 0 #fff5c8,
+      0 3px 0 0 var(--gold-deep),
+      -3px 0 0 0 #ffea9c,
+      3px 0 0 0 var(--gold-deep),
+      3px 4px 0 0 var(--pixel-shadow);
+  }
+  .pipeline li > div {
+    background: var(--panel-alt);
+    padding: 11px 14px;
+    box-shadow:
+      0 -2px 0 0 var(--border-soft),
+      0 2px 0 0 var(--border-soft),
+      -2px 0 0 0 var(--border-soft),
+      2px 0 0 0 var(--border-soft);
+  }
+  .pipeline b {
+    display: block;
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--heading-card);
+    margin-bottom: 2px;
+  }
+  .pipeline span {
+    display: block;
+    color: var(--muted);
+    font-size: 15px;
+    line-height: 1.56;
+  }
+
+  .links {
+    margin-top: 16px;
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+  .links a {
+    display: inline-block;
+    padding: 7px 14px;
+    font-weight: 600;
+    font-size: 15px;
+    text-decoration: none;
+    color: #102b25;
+    background: var(--mint);
+    box-shadow:
+      0 -2px 0 0 #d6fff4,
+      0 2px 0 0 var(--mint-deep),
+      -2px 0 0 0 #b0fce8,
+      2px 0 0 0 var(--mint-deep),
+      0 4px 0 0 var(--mint-deep);
+    transition: transform 90ms steps(2, end), box-shadow 90ms steps(2, end);
+  }
+  .links a:hover {
+    background: #9effe6;
+    transform: translateY(1px);
+  }
+
+  /* ---------- BẢNG HỌC TẬP ---------- */
+  .table-frame {
+    margin-top: 24px;
+    padding: 20px 24px;
+  }
+  .study {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 16px;
+  }
+  .study th,
+  .study td {
+    text-align: left;
+    padding: 15px 14px 15px 0;
+    border-bottom: 2px dashed rgba(110, 86, 178, 0.35);
+    vertical-align: top;
+  }
+  .study tr:last-child td { border-bottom: 0; }
+  .study th {
+    font-family: var(--font-pixel);
+    font-weight: 400;
+    color: var(--heading-card);
+    font-size: 24px;
+    line-height: 1.15;
+    border-bottom: 3px solid var(--border-soft);
+    padding-bottom: 10px;
+  }
+  .study td:first-child { font-weight: 600; color: var(--text); width: 33%; }
+  .study td:nth-child(2) { color: var(--muted); }
+  .study .score {
+    font-family: var(--font-pixel);
+    font-size: 28px;
+    line-height: 1.1;
+    white-space: nowrap;
+    color: var(--accent-bold);
+  }
+
+  /* ---------- CÁCH TÔI LÀM VIỆC & HỌC VẤN ---------- */
+  .two {
+    display: grid;
+    grid-template-columns: 1.32fr 0.85fr;
+    gap: 32px;
+    margin-top: 26px;
+    align-items: start;
+  }
+
+  .work-stack {
+    display: grid;
+    gap: 18px;
+  }
+
+  .work-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 14px;
+  }
+
+  .work-item {
+    display: grid;
+    grid-template-columns: 38px 1fr;
+    gap: 14px;
+    align-items: start;
+    background: var(--panel);
+    padding: 16px 18px;
+    box-shadow:
+      0 -3px 0 0 var(--border-outer),
+      0 3px 0 0 var(--border-outer),
+      -3px 0 0 0 var(--border-outer),
+      3px 0 0 0 var(--border-outer),
+      inset 0 3px 0 0 rgba(255, 255, 255, 0.28),
+      5px 7px 0 -1px var(--pixel-shadow);
+    transition: translate 120ms steps(2, end), box-shadow 150ms ease, background-color 280ms ease;
+  }
+  .work-item:hover { translate: 0 -4px; }
+
+  .work-item h3 {
+    font-size: 27px;
+    line-height: 1.15;
+    color: var(--heading-card);
+  }
+  .work-item p {
+    margin: 4px 0 0;
+    color: var(--muted);
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  .skill-slot-card {
+    background: var(--panel);
+    padding: 18px 20px;
+    transition: translate 120ms steps(2, end), box-shadow 150ms ease, background-color 280ms ease;
+    box-shadow:
+      0 -3px 0 0 var(--border-outer),
+      0 3px 0 0 var(--border-outer),
+      -3px 0 0 0 var(--border-outer),
+      3px 0 0 0 var(--border-outer),
+      inset 0 3px 0 0 rgba(255, 255, 255, 0.28),
+      5px 7px 0 -1px var(--pixel-shadow);
+  }
+  .skill-slot-card:hover { translate: 0 -4px; }
+
+  .skill-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+  }
+
+  .skill-slot-card h3 {
+    font-size: 26px;
+    line-height: 1.18;
+    color: var(--heading-card);
+  }
+
+  .inv-rack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .inv-cell {
+    width: 34px;
+    height: 34px;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    background: var(--slot-bg);
+    box-shadow:
+      inset 0 2px 0 0 rgba(0, 0, 0, 0.55),
+      0 -2px 0 0 #664ead,
+      0 2px 0 0 #664ead,
+      -2px 0 0 0 #664ead,
+      2px 0 0 0 #664ead;
+    transition: transform 90ms steps(2, end), box-shadow 120ms ease;
+  }
+  .inv-cell:hover,
+  .inv-cell.equipped {
+    transform: translateY(-4px);
+    box-shadow:
+      inset 0 2px 0 0 rgba(255, 255, 255, 0.22),
+      0 -2px 0 0 var(--gold),
+      0 2px 0 0 var(--gold),
+      -2px 0 0 0 var(--gold),
+      2px 0 0 0 var(--gold),
+      0 0 14px rgba(255, 212, 71, 0.55);
+  }
+  .inv-cell img,
+  .inv-cell svg {
+    width: 20px;
+    height: 20px;
+    display: block;
+  }
+  .inv-cell svg { shape-rendering: crispEdges; }
+
+  .skill-slot-card p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 16px;
+    line-height: 1.62;
+  }
+
+  .edu { padding: 24px 24px 26px; }
+  .edu-crest {
+    width: 44px;
+    height: 44px;
+    display: grid;
+    place-items: center;
+    margin-bottom: 14px;
+    background: var(--slot-bg);
+    box-shadow:
+      0 -3px 0 0 var(--gold),
+      0 3px 0 0 var(--gold),
+      -3px 0 0 0 var(--gold),
+      3px 0 0 0 var(--gold),
+      0 0 20px rgba(255, 224, 116, 0.34);
+  }
+  .edu-crest svg { animation: spriteBob 2.2s steps(2, end) infinite; }
+  .edu h3 { font-size: 32px; line-height: 1.15; color: var(--heading-card); }
+  .edu p { margin: 10px 0 0; }
+  .edu .muted { color: var(--muted); font-size: 15.5px; }
+
+  /* ---------- Footer ---------- */
+  footer {
+    margin-top: 84px;
+    padding: 56px 0 64px;
+    position: relative;
+    overflow: clip;
+    background: var(--footer-bg);
+    color: var(--footer-text);
+    border-top: 4px solid var(--border-outer);
+    box-shadow: 0 -4px 0 0 rgba(255, 155, 226, 0.35);
+  }
+  footer h2 {
+    font-size: clamp(34px, 4.4vw, 48px);
+    color: var(--gold);
+    text-shadow: 3px 3px 0 #1d0f3d, 0 0 22px rgba(255, 224, 116, 0.32);
+  }
+  footer p { color: var(--footer-muted); max-width: 42em; margin: 14px 0 0; }
+  footer .small { margin-top: 38px; font-size: 15px; color: var(--footer-muted); }
+
+  /* =========================================================
+     PUNCHY BIDIRECTIONAL GAME SCROLL ENGINE & DETAILS UNPACK
+     ========================================================= */
+  main {
+    transform: skewY(var(--scroll-skew, 0deg));
+    transform-origin: center center;
+    will-change: transform;
+  }
+
+  @keyframes detailUnpack {
+    0% { opacity: 0; transform: translate3d(0, -14px, 0) scaleY(0.86); }
+    100% { opacity: 1; transform: translate3d(0, 0, 0) scaleY(1); }
+  }
+  @keyframes stepPopIn {
+    0% { opacity: 0; transform: translate3d(-24px, 0, 0) scale(0.92); }
+    100% { opacity: 1; transform: translate3d(0, 0, 0) scale(1); }
+  }
+  .proj-details[open] .proj-body {
+    transform-origin: top center;
+    animation: detailUnpack 170ms cubic-bezier(0.14, 1.28, 0.28, 1) both;
+  }
+  .proj-details[open] .pipeline li {
+    animation: stepPopIn 110ms cubic-bezier(0.14, 1.28, 0.28, 1) both;
+  }
+  .proj-details[open] .pipeline li:nth-child(1) { animation-delay: 0ms; }
+  .proj-details[open] .pipeline li:nth-child(2) { animation-delay: 20ms; }
+  .proj-details[open] .pipeline li:nth-child(3) { animation-delay: 40ms; }
+  .proj-details[open] .pipeline li:nth-child(4) { animation-delay: 60ms; }
+  .proj-details[open] .pipeline li:nth-child(5) { animation-delay: 80ms; }
+
+  /* RPG left-to-right slash reveal (reverses right-to-left when scrolling up) */
+  .wipe-ltr {
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    clip-path: inset(0 100% 0 0);
+    transform: translate3d(-120px, 14px, 0) skewX(14deg) scale(0.88);
+    will-change: transform, opacity, clip-path;
+    transition:
+      clip-path 0.66s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.62s cubic-bezier(0.14, 1.32, 0.24, 1),
+      opacity 0.28s ease;
+  }
+  .wipe-ltr::after {
+    content: "";
+    position: absolute;
+    top: -4px;
+    bottom: -4px;
+    width: 30px;
+    left: -40px;
+    pointer-events: none;
+    background: linear-gradient(90deg, transparent, rgba(255, 247, 178, 0.92), #ffd447, transparent);
+    opacity: 0;
+  }
+  .wipe-ltr.is-in {
+    opacity: 1;
+    clip-path: inset(0 0 0 0);
+    transform: translate3d(0, 0, 0) skewX(0deg) scale(1);
+    transition-delay: var(--d, 0ms);
+  }
+  .wipe-ltr.is-in::after {
+    animation: rpgBeam 0.64s steps(14, end) var(--d, 0ms) both;
+  }
+  .wipe-ltr.is-eject-bot {
+    opacity: 0;
+    clip-path: inset(0 100% 0 0);
+    transform: translate3d(-150px, 26px, 0) skewX(-16deg) scale(0.84);
+    transition:
+      clip-path 0.34s cubic-bezier(0.62, 0.04, 0.92, 0.28),
+      transform 0.36s cubic-bezier(0.62, 0.04, 0.92, 0.28),
+      opacity 0.26s ease !important;
+    transition-delay: 0ms !important;
+  }
+  .wipe-ltr.is-past {
+    opacity: 0;
+    clip-path: inset(0 0 0 100%);
+    transform: translate3d(140px, -22px, 0) skewX(-14deg) scale(0.88);
+    transition:
+      clip-path 0.34s cubic-bezier(0.55, 0.04, 0.88, 0.35),
+      transform 0.36s cubic-bezier(0.55, 0.04, 0.88, 0.35),
+      opacity 0.28s ease !important;
+    transition-delay: 0ms !important;
+  }
+
+  /* Directional outer-edge fly-in + reverse whip-out when scrolling up */
+  .fly-left,
+  .fly-right,
+  .fly-up {
+    opacity: 0;
+    will-change: transform, opacity;
+    transition:
+      transform 0.66s cubic-bezier(0.14, 1.32, 0.24, 1),
+      opacity 0.30s ease,
+      translate 120ms steps(2, end),
+      box-shadow 160ms ease,
+      background-color 280ms ease;
+  }
+  .fly-left  { transform: translate3d(-260px, 46px, 0) skewX(15deg) rotate(-4deg) scale(0.78); }
+  .fly-right { transform: translate3d(260px, 46px, 0) skewX(-15deg) rotate(4deg) scale(0.78); }
+  .fly-up    { transform: translate3d(0, 150px, 0) scale(0.76) skewY(3deg); }
+
+  .fly-left.is-in,
+  .fly-right.is-in,
+  .fly-up.is-in {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) skewX(0deg) skewY(0deg) rotate(0deg) scale(1);
+    transition-delay: var(--d, 0ms);
+  }
+
+  .fly-left.is-eject-bot,
+  .fly-right.is-eject-bot,
+  .fly-up.is-eject-bot {
+    opacity: 0;
+    transition:
+      transform 0.36s cubic-bezier(0.6, 0.03, 0.92, 0.28),
+      opacity 0.28s ease !important;
+    transition-delay: 0ms !important;
+  }
+  .fly-left.is-eject-bot  { transform: translate3d(-310px, 58px, 0) skewX(-16deg) rotate(5deg) scale(0.72); }
+  .fly-right.is-eject-bot { transform: translate3d(310px, 58px, 0) skewX(16deg) rotate(-5deg) scale(0.72); }
+  .fly-up.is-eject-bot    { transform: translate3d(0, 175px, 0) scale(0.72) skewY(-3deg); }
+
+  .fly-left.is-past,
+  .fly-right.is-past,
+  .fly-up.is-past {
+    opacity: 0;
+    transition:
+      transform 0.36s cubic-bezier(0.55, 0.04, 0.88, 0.35),
+      opacity 0.28s ease !important;
+    transition-delay: 0ms !important;
+  }
+  .fly-left.is-past  { transform: translate3d(-240px, -52px, 0) skewX(-12deg) rotate(-3deg) scale(0.80); }
+  .fly-right.is-past { transform: translate3d(240px, -52px, 0) skewX(12deg) rotate(3deg) scale(0.80); }
+  .fly-up.is-past    { transform: translate3d(0, -110px, 0) scale(0.80); }
+
+  .row.just-hit,
+  .work-item.just-hit,
+  .skill-slot-card.just-hit,
+  .edu.just-hit,
+  .table-frame.just-hit {
+    box-shadow:
+      0 -4px 0 0 var(--gold),
+      0 4px 0 0 var(--gold),
+      -4px 0 0 0 var(--gold),
+      4px 0 0 0 var(--gold),
+      0 0 28px rgba(255, 212, 71, 0.55),
+      7px 9px 0 -2px var(--pixel-shadow);
+  }
+
+  .copy-toast {
+    position: fixed;
+    left: 50%;
+    bottom: 24px;
+    z-index: 60;
+    max-width: calc(100vw - 32px);
+    padding: 10px 18px;
+    font-family: var(--font-body);
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.35;
+    text-align: center;
+    color: #161032;
+    background: #53f0c8;
+    box-shadow:
+      0 -3px 0 0 #1c133c,
+      0 3px 0 0 #1c133c,
+      -3px 0 0 0 #1c133c,
+      3px 0 0 0 #1c133c,
+      5px 7px 0 -1px rgba(18, 12, 42, 0.42);
+    opacity: 0;
+    pointer-events: none;
+    transform: translate3d(-50%, 16px, 0) scale(0.92);
+    transition: transform 180ms cubic-bezier(0.16, 1.28, 0.3, 1), opacity 160ms ease;
+  }
+  .copy-toast.show {
+    opacity: 1;
+    transform: translate3d(-50%, 0, 0) scale(1);
+  }
+
+  /* =========================================================
+     RESPONSIVE (Mobile-First Polish: Touch Targets >= 44px, Safe Areas, Balanced Grids)
+     ========================================================= */
+  @media (max-width: 880px) {
+    .celestial-orbit {
+      left: 48%;
+      top: 72vh;
+      --orbit-r: 65vh;
+    }
+    .pixel-sun { width: 54px; height: 54px; }
+    .pixel-moon { width: 46px; height: 46px; }
+    .hero .wrap,
+    .row-summary-grid,
+    .tvm-detail-grid,
+    .two {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+    .hero { padding: calc(56px + env(safe-area-inset-top)) 0 36px; }
+    .handheld {
+      transform: none;
+      animation: consoleBobFlat 4.2s ease-in-out infinite;
+    }
+    @keyframes consoleBobFlat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+    section.block { padding: 52px 0 0; }
+    .study td:first-child { width: auto; }
+  }
+
+  @media (max-width: 600px) {
+    body { font-size: 15.5px; }
+    .wrap {
+      padding-left: max(16px, env(safe-area-inset-left));
+      padding-right: max(16px, env(safe-area-inset-right));
+    }
+    .theme-switch {
+      top: max(10px, env(safe-area-inset-top));
+      right: max(12px, env(safe-area-inset-right));
+      min-height: 44px;
+      padding: 6px 8px;
+      align-items: center;
+    }
+
+    /* Hero compact framing so headline + balanced CTA + handheld controls sit cleanly */
+    .hero { padding: calc(54px + env(safe-area-inset-top)) 0 28px; }
+    .hero .wrap { gap: 18px; }
+    .hero h1 { font-size: clamp(42px, 11.5vw, 52px); }
+    .hero .role {
+      margin: 12px 0 0;
+      padding: 7px 14px;
+      font-size: clamp(20px, 5.4vw, 24px);
+    }
+    .contact {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 10px;
+      margin-top: 18px;
+    }
+    .contact .btn {
+      width: 100%;
+      min-height: 44px;
+      justify-content: center;
+      text-align: center;
+      padding: 10px 12px;
+      font-size: 15px;
+    }
+    .contact .btn.primary {
+      grid-column: 1 / -1;
+    }
+
+    /* Compact handheld proportions so bezel + D-pad + A/B fit comfortably on phones */
+    .handheld {
+      width: min(238px, 66vw);
+      padding: 10px 10px 12px;
+    }
+    .screen-bezel { aspect-ratio: 9 / 15; }
+    .g-slide { padding: 10px 9px; }
+    .scr-chat { gap: 6px; }
+    .chat-head { font-size: 16px; }
+    .chat-msg { font-size: 11.5px; line-height: 1.35; padding: 5px 7px; }
+    .handheld-controls { margin-top: 10px; padding: 0 6px; }
+
+    /* Content rhythm & tap targets */
+    section.block { padding: 48px 0 0; }
+    .section-head { margin-bottom: 18px; }
+    section.block > .wrap .section-head h2,
+    section.block > .wrap > h2 {
+      font-size: clamp(32px, 9.2vw, 42px);
+    }
+    .lead { font-size: 15.5px; padding: 6px 10px; }
+
+    .rows { gap: 16px; }
+    .pixel-box, .row, .edu { padding: 18px 15px; }
+    .table-frame { padding: 14px 15px; }
+    .row-summary-grid { gap: 12px; }
+    .quest-title h3 { font-size: clamp(24px, 6.8vw, 29px); }
+    .proj-details summary {
+      width: 100%;
+      min-height: 44px;
+      justify-content: center;
+      margin-top: 14px;
+    }
+    .proj-body { margin-top: 14px; padding-top: 14px; }
+    .tvm-detail-grid { gap: 18px; }
+    .links { gap: 10px; }
+    .links a {
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      padding: 8px 14px;
+    }
+
+    .pipeline::before { left: 18px; }
+    .pipeline li { grid-template-columns: 38px 1fr; gap: 12px; }
+    .pipeline li::before { width: 38px; height: 38px; font-size: 25px; }
+    .pipeline span { font-size: 15px; }
+
+    /* Mobile scoreboard card polish */
+    .study thead { display: none; }
+    .study, .study tbody, .study tr, .study td { display: block; width: 100%; }
+    .study tr {
+      border-bottom: 2px dashed rgba(138, 115, 204, 0.45);
+      padding: 13px 0;
+    }
+    .study tr:last-child { border-bottom: 0; }
+    .study td { border: 0; padding: 3px 0; font-size: 15.5px; }
+    .study .score {
+      display: inline-block;
+      width: auto;
+      margin-top: 7px;
+      padding: 3px 12px;
+      font-size: 22px;
+      background: var(--panel-alt);
+      box-shadow:
+        0 -2px 0 0 var(--border-soft),
+        0 2px 0 0 var(--border-soft),
+        -2px 0 0 0 var(--border-soft),
+        2px 0 0 0 var(--border-soft);
+    }
+
+    footer .contact {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    footer .contact .btn.primary { flex: 1 1 100%; }
+    footer .contact .btn:not(.primary) { flex: 1 1 140px; min-width: max-content; }
+
+    /* Tool slots >= 44x44 touch size on phones */
+    .inv-rack { gap: 10px; }
+    .inv-cell { width: 44px; height: 44px; }
+    .inv-cell img, .inv-cell svg { width: 22px; height: 22px; }
+
+    /* Calibrated mobile fly distances so card entrances stay punchy without flying too far off narrow screens */
+    .fly-left  { transform: translate3d(-140px, 28px, 0) skewX(10deg) rotate(-2.5deg) scale(0.84); }
+    .fly-right { transform: translate3d(140px, 28px, 0) skewX(-10deg) rotate(2.5deg) scale(0.84); }
+    .fly-left.is-eject-bot  { transform: translate3d(-170px, 34px, 0) skewX(-12deg) rotate(3deg) scale(0.80); }
+    .fly-right.is-eject-bot { transform: translate3d(170px, 34px, 0) skewX(12deg) rotate(-3deg) scale(0.80); }
+
+    footer {
+      margin-top: 56px;
+      padding: 42px 0 calc(48px + env(safe-area-inset-bottom));
+    }
+    footer .small { margin-top: 26px; }
+    .copy-toast {
+      bottom: calc(16px + env(safe-area-inset-bottom));
+      font-size: 14.5px;
+    }
+  }
+
+  /* =========================================================
+     REDUCED MOTION
+     ========================================================= */
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .star-twinkle-a,
+    .star-twinkle-b,
+    .pixel-sun,
+    .shooting-star,
+    .sky-clouds-svg,
+    .city-win-blink,
+    .btn.primary::after,
+    .role-cursor,
+    .desk-cat,
+    .desk-tail,
+    .desk-ponytail,
+    .desk-hands,
+    .desk-screen-glow,
+    .start-emblem,
+    .scr-start-btn,
+    .console-spark,
+    .handheld,
+    .led-dot,
+    .pipeline::before,
+    .quest-sprite svg,
+    .edu-crest svg { animation: none !important; }
+    .handheld { transform: none !important; }
+    .star-twinkle-a, .star-twinkle-b { opacity: 0.85; }
+    .shooting-star, #fx-canvas, .chat-typing-cursor { display: none !important; }
+    .chat-msg { opacity: 1 !important; transform: none !important; transition: none !important; }
+    .sky-layer,
+    .wipe-ltr,
+    .fly-left,
+    .fly-right,
+    .fly-up,
+    .is-eject-bot,
+    .is-past,
+    main,
+    .hero-copy,
+    .console-stage {
+      opacity: 1 !important;
+      clip-path: none !important;
+      transform: none !important;
+      translate: none !important;
+      rotate: none !important;
+      filter: none !important;
+      animation: none !important;
+      transition: none !important;
+    }
+    .wipe-ltr::after,
+    .hero .role::after { display: none !important; }
+    .proj-details[open] .proj-body,
+    .proj-details[open] .pipeline li { animation: none !important; }
+    .hero h1,
+    .hero .role,
+    .hero .contact .btn {
+      opacity: 1 !important;
+      clip-path: none !important;
+      transform: none !important;
+      animation: none !important;
+    }
+    .sky-bands-day,
+    .sky-bands-sunset,
+    .sky-bands-night,
+    .celestial-orbit,
+    .celestial-sprite,
+    .sky-stars-svg,
+    .shot-img,
+    .btn,
+    .links a,
+    .pixel-box,
+    .row,
+    .work-item,
+    .inv-cell,
+    .game-pop,
+    .theme-switch,
+    .copy-toast { transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="xp-bar" aria-hidden="true"><div class="xp-fill" id="xp-fill"></div></div>
+
+<button type="button" class="theme-switch" id="theme-toggle" aria-label="Chuyển chế độ ngày và đêm" aria-pressed="false" title="Chế độ Ngày / Đêm">
+  <span class="switch-slot switch-sun" aria-hidden="true">
+    <svg width="16" height="16" viewBox="0 0 16 16" shape-rendering="crispEdges">
+      <rect x="7" y="1" width="2" height="2" fill="#211548"/><rect x="7" y="13" width="2" height="2" fill="#211548"/>
+      <rect x="1" y="7" width="2" height="2" fill="#211548"/><rect x="13" y="7" width="2" height="2" fill="#211548"/>
+      <rect x="3" y="3" width="2" height="2" fill="#ff7a1a"/><rect x="11" y="3" width="2" height="2" fill="#ff7a1a"/>
+      <rect x="3" y="11" width="2" height="2" fill="#ff7a1a"/><rect x="11" y="11" width="2" height="2" fill="#ff7a1a"/>
+      <rect x="5" y="5" width="6" height="6" fill="#ff7a1a"/><rect x="6" y="6" width="4" height="4" fill="#fff7b2"/>
+    </svg>
+  </span>
+  <span class="switch-slot switch-moon" aria-hidden="true">
+    <svg width="16" height="16" viewBox="0 0 16 16" shape-rendering="crispEdges">
+      <rect x="8" y="2" width="4" height="2" fill="#ffe074"/><rect x="6" y="4" width="4" height="2" fill="#ffe074"/>
+      <rect x="4" y="6" width="4" height="4" fill="#ffe074"/><rect x="6" y="10" width="4" height="2" fill="#ffe074"/>
+      <rect x="8" y="12" width="4" height="2" fill="#ffe074"/><rect x="12" y="5" width="2" height="2" fill="#ff9be2"/>
+    </svg>
+  </span>
+</button>
+
+<canvas id="fx-canvas" aria-hidden="true"></canvas>
+
+<div class="sky-backdrop" aria-hidden="true">
+  <div class="sky-bands-day"></div>
+  <div class="sky-bands-night"></div>
+  <div class="sky-bands-sunset"></div>
+  <div class="sky-glow"></div>
+  <div class="sky-dither"></div>
+
+  <div class="celestial-orbit">
+    <div class="celestial-arm arm-sun">
+      <div class="celestial-sprite">
+        <svg class="pixel-sun" viewBox="0 0 32 32" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg">
+          <rect x="14" y="0" width="4" height="3" fill="#fff8cc"/><rect x="14" y="29" width="4" height="3" fill="#ffe074"/>
+          <rect x="0" y="14" width="3" height="4" fill="#fff8cc"/><rect x="29" y="14" width="3" height="4" fill="#ffe074"/>
+          <rect x="10" y="5" width="12" height="3" fill="#fff8d6"/><rect x="7" y="8" width="18" height="4" fill="#ffe47a"/>
+          <rect x="5" y="12" width="22" height="8" fill="#ffd257"/><rect x="7" y="20" width="18" height="4" fill="#ffaa6e"/>
+          <rect x="10" y="24" width="12" height="3" fill="#ff8491"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="celestial-arm arm-moon">
+      <div class="celestial-sprite">
+        <svg class="pixel-moon" viewBox="0 0 24 24" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg">
+          <rect x="10" y="2" width="6" height="2" fill="#ffe074"/><rect x="7" y="4" width="7" height="2" fill="#ffe074"/>
+          <rect x="5" y="6" width="5" height="3" fill="#ffe074"/><rect x="4" y="9" width="4" height="6" fill="#ffe074"/>
+          <rect x="5" y="15" width="5" height="3" fill="#ffe074"/><rect x="7" y="18" width="7" height="2" fill="#ffe074"/>
+          <rect x="10" y="20" width="6" height="2" fill="#ffe074"/><rect x="17" y="7" width="2" height="2" fill="#ff9be2"/>
+          <rect x="19" y="12" width="2" height="2" fill="#84fce0"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <div class="shooting-star"></div>
+
+  <div class="sky-layer" data-parallax="0.03">
+    <svg class="sky-stars-svg" viewBox="0 0 1280 720" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+      <g class="star-twinkle-a" fill="#fff6d6">
+        <rect x="64" y="28" width="4" height="12"/><rect x="60" y="32" width="12" height="4"/>
+        <rect x="430" y="42" width="4" height="12"/><rect x="426" y="46" width="12" height="4"/>
+        <rect x="780" y="54" width="4" height="12"/><rect x="776" y="58" width="12" height="4"/>
+        <rect x="940" y="148" width="4" height="12"/><rect x="936" y="152" width="12" height="4"/>
+        <rect x="1188" y="182" width="4" height="12"/><rect x="1184" y="186" width="12" height="4"/>
+      </g>
+      <g class="star-twinkle-b" fill="#ff9be2">
+        <rect x="296" y="26" width="4" height="12"/><rect x="292" y="30" width="12" height="4"/>
+        <rect x="596" y="88" width="4" height="12"/><rect x="592" y="92" width="12" height="4"/>
+        <rect x="1012" y="72" width="4" height="12"/><rect x="1008" y="76" width="12" height="4"/>
+        <rect x="464" y="216" width="4" height="4"/><rect x="844" y="204" width="4" height="4"/>
+      </g>
+    </svg>
+  </div>
+
+  <div class="sky-layer sky-layer-clouds" data-parallax="0.06">
+    <div class="cloud-track">
+      <svg class="sky-clouds-svg" viewBox="0 0 1280 260" xmlns="http://www.w3.org/2000/svg">
+        <rect x="48" y="116" width="176" height="24" fill="var(--cloud-2)"/><rect x="72" y="96" width="128" height="20" fill="var(--cloud-1)"/>
+        <rect x="96" y="80" width="76" height="16" fill="var(--cloud-1)"/><rect x="96" y="80" width="76" height="4" fill="var(--cloud-3)"/>
+        <rect x="48" y="140" width="176" height="8" fill="var(--cloud-shadow)"/>
+        <rect x="500" y="140" width="224" height="24" fill="var(--cloud-2)"/><rect x="532" y="120" width="158" height="20" fill="var(--cloud-1)"/>
+        <rect x="572" y="104" width="84" height="16" fill="var(--cloud-1)"/><rect x="572" y="104" width="84" height="4" fill="var(--cloud-3)"/>
+        <rect x="500" y="164" width="224" height="8" fill="var(--cloud-shadow)"/>
+        <rect x="970" y="84" width="196" height="24" fill="var(--cloud-2)"/><rect x="1002" y="64" width="132" height="20" fill="var(--cloud-1)"/>
+        <rect x="1034" y="48" width="68" height="16" fill="var(--cloud-1)"/><rect x="1034" y="48" width="68" height="4" fill="var(--cloud-3)"/>
+      </svg>
+    </div>
+  </div>
+
+  <div class="sky-layer sky-layer-city" data-parallax="0.02">
+    <svg class="sky-city-svg" viewBox="0 0 1280 120" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 120V84H32V68H64V92H104V52H144V76H188V60H228V88H276V44H316V72H360V96H412V64H452V80H500V56H544V84H596V48H636V76H688V92H736V60H784V80H836V52H880V88H928V64H976V96H1024V48H1068V76H1120V60H1164V88H1212V56H1256V84H1280V120H0Z" fill="var(--city-fill)"/>
+      <rect class="city-win-blink" x="116" y="64" width="4" height="4" fill="#ffe074"/>
+      <rect x="128" y="76" width="4" height="4" fill="#ff9be2" fill-opacity="0.88"/>
+      <rect x="288" y="56" width="4" height="4" fill="#ffe074" fill-opacity="0.9"/>
+      <rect class="city-win-blink" x="288" y="68" width="4" height="4" fill="#84fce0"/>
+      <rect x="612" y="60" width="4" height="4" fill="#ffe074" fill-opacity="0.9"/>
+      <rect class="city-win-blink" x="852" y="64" width="4" height="4" fill="#ff9be2"/>
+      <rect x="1040" y="60" width="4" height="4" fill="#ffe074" fill-opacity="0.9"/>
+      <rect x="1224" y="68" width="4" height="4" fill="#84fce0" fill-opacity="0.85"/>
+    </svg>
+  </div>
+
+  <div class="sky-scrim"></div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="hero-copy">
+      <h1>Lê Việt Hoàng</h1>
+      <p class="role"><span class="role-cursor" aria-hidden="true"></span>Xin chào mình là Hoàng</p>
+      <div class="contact">
+        <a class="btn primary copy-trigger" href="mailto:kophaileviethoang@gmail.com" data-copy="kophaileviethoang@gmail.com" data-copy-kind="email" title="Bấm để copy email">Gửi email cho tôi</a>
+        <a class="btn" href="#du-an">Xem dự án</a>
+        <a class="btn" href="https://github.com/kophaihoang" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+
+    <div class="console-stage">
+      <svg class="console-spark s1" viewBox="0 0 5 5" shape-rendering="crispEdges" aria-hidden="true">
+        <rect x="2" y="0" width="1" height="5" fill="#ffd447"/><rect x="0" y="2" width="5" height="1" fill="#ffd447"/>
+      </svg>
+      <svg class="console-spark s2" viewBox="0 0 5 5" shape-rendering="crispEdges" aria-hidden="true">
+        <rect x="2" y="0" width="1" height="5" fill="#ff69ad"/><rect x="0" y="2" width="5" height="1" fill="#ff69ad"/>
+      </svg>
+      <svg class="console-spark s3" viewBox="0 0 5 5" shape-rendering="crispEdges" aria-hidden="true">
+        <rect x="2" y="0" width="1" height="5" fill="#53f0c8"/><rect x="0" y="2" width="5" height="1" fill="#53f0c8"/>
+      </svg>
+
+      <div class="handheld" id="handheld" role="region" aria-label="Máy game minh họa 4 màn hình">
+        <div class="handheld-top" aria-hidden="true">
+          <div class="handheld-led">
+            <span class="led-dot"></span>
+            <span class="led-sig"></span>
+          </div>
+          <div class="speaker-grille">
+            <i></i><i></i><i></i><i></i>
+          </div>
+        </div>
+
+        <div class="screen-bezel">
+          <div class="game-screen" id="game-screen" title="Bấm vào màn hình để chuyển cảnh">
+            <!-- MÀN HÌNH 1: Chat với AI -->
+            <div class="g-slide scr-chat active" data-slide="0" role="tabpanel" aria-label="Màn hình 1: Chat với AI">
+              <div class="chat-head">
+                <span>AI PAIR · LOG</span>
+                <span>01/04</span>
+              </div>
+              <div class="chat-feed" id="chat-feed">
+                <div class="chat-msg shown" data-line="0"><span class="chat-who">Hoàng:</span> <span class="chat-text">"Cần tool làm video từ link Threads"</span></div>
+                <div class="chat-msg from-ai shown" data-line="1"><span class="chat-who">AI:</span> <span class="chat-text">"Đang dựng..."</span></div>
+                <div class="chat-msg shown" data-line="2"><span class="chat-who">Hoàng:</span> <span class="chat-text">"Lỗi ảnh bị cắt, sửa giúp"</span></div>
+                <div class="chat-msg from-ai shown" data-line="3"><span class="chat-who">AI:</span> <span class="chat-text">"Đã sửa"</span></div>
+                <div class="chat-msg from-done shown" data-line="4"><span class="chat-text">✓ Chạy được</span></div>
+              </div>
+            </div>
+
+            <!-- MÀN HÌNH 2: Nhân vật pixel & mèo quay ngang bên bàn laptop -->
+            <div class="g-slide scr-desk" data-slide="1" role="tabpanel" aria-label="Màn hình 2: Nhân vật pixel và mèo ngồi bàn làm việc">
+              <svg class="desk-scene" viewBox="0 0 90 160" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges">
+                <!-- Room Wall -->
+                <rect x="0" y="0" width="90" height="144" fill="#21144b"/>
+                <rect x="8" y="0" width="4" height="144" fill="#261856"/>
+                <rect x="24" y="0" width="4" height="144" fill="#261856"/>
+                <rect x="40" y="0" width="4" height="144" fill="#261856"/>
+                <rect x="56" y="0" width="4" height="144" fill="#261856"/>
+                <rect x="72" y="0" width="4" height="144" fill="#261856"/>
+
+                <!-- Twilight Window -->
+                <rect x="22" y="14" width="58" height="44" fill="#170e36"/>
+                <rect x="24" y="16" width="54" height="40" fill="#2c195c"/>
+                <rect x="24" y="34" width="54" height="11" fill="#7c3d95"/>
+                <rect x="24" y="45" width="54" height="11" fill="#d9678a"/>
+                <rect x="31" y="22" width="2" height="2" fill="#ffe074"/>
+                <rect x="44" y="27" width="2" height="2" fill="#ff9be2"/>
+                <rect x="64" y="20" width="6" height="6" fill="#ffe074"/>
+                <rect x="66" y="22" width="4" height="4" fill="#2c195c"/>
+                <rect x="50" y="14" width="2" height="44" fill="#4f368f"/>
+                <rect x="22" y="56" width="58" height="4" fill="#6346ab"/>
+                <!-- Tiny pixel plant on windowsill -->
+                <rect x="66" y="48" width="4" height="5" fill="#7ef4cf"/>
+                <rect x="65" y="53" width="6" height="3" fill="#ff8cc6"/>
+
+                <!-- Floor & Baseboard -->
+                <rect x="0" y="144" width="90" height="16" fill="#160c36"/>
+                <rect x="0" y="144" width="90" height="2" fill="#3a236b"/>
+                <rect x="6" y="148" width="42" height="2" fill="#291752"/>
+                <rect x="50" y="152" width="34" height="2" fill="#291752"/>
+
+                <!-- Soft Screen Light Cone shining LEFT toward developer -->
+                <polygon class="desk-screen-glow" points="58,85 57,102 31,94 31,74" fill="#84fce0" fill-opacity="0.14"/>
+
+                <!-- Side-Profile Gaming/Office Chair (left, facing right) -->
+                <rect x="12" y="83" width="5" height="31" fill="#36226b"/>
+                <rect x="14" y="85" width="2" height="27" fill="#5e43ad"/>
+                <rect x="13" y="112" width="18" height="5" fill="#48308a"/>
+                <rect x="20" y="117" width="4" height="24" fill="#2b1b59"/>
+                <rect x="14" y="141" width="16" height="3" fill="#3d2875"/>
+
+                <!-- Developer in Side Profile (sitting on left, facing RIGHT ->) -->
+                <!-- Hair + Front bangs + Crisp Side Ponytail tied back -->
+                <rect x="18" y="64" width="14" height="7" fill="#100924"/>
+                <rect x="19" y="63" width="11" height="2" fill="#5a41a8"/>
+                <rect x="29" y="66" width="4" height="5" fill="#100924"/>
+                <rect x="16" y="67" width="5" height="9" fill="#100924"/>
+                <rect x="17" y="66" width="3" height="2" fill="#5a41a8"/>
+                <!-- Hair tie + Flowing Ponytail cleanly clear of chair backrest -->
+                <rect x="14" y="69" width="3" height="4" fill="#ff69ad"/>
+                <rect x="15" y="70" width="1" height="2" fill="#ffd447"/>
+                <g class="desk-ponytail">
+                  <rect x="8" y="68" width="6" height="5" fill="#100924"/>
+                  <rect x="9" y="67" width="5" height="2" fill="#6d52bd"/>
+                  <rect x="5" y="72" width="6" height="6" fill="#100924"/>
+                  <rect x="6" y="71" width="4" height="2" fill="#5a41a8"/>
+                  <rect x="4" y="77" width="5" height="6" fill="#100924"/>
+                  <rect x="5" y="77" width="2" height="4" fill="#5a41a8"/>
+                  <rect x="3" y="82" width="4" height="4" fill="#281952"/>
+                </g>
+                <!-- Face & nose facing right -->
+                <rect x="20" y="71" width="12" height="13" fill="#ffd1b3"/>
+                <rect x="32" y="77" width="2" height="3" fill="#ffd1b3"/>
+                <!-- Side-profile glasses + cyan screen reflection -->
+                <rect x="21" y="75" width="6" height="2" fill="#1c133c"/>
+                <rect x="27" y="74" width="5" height="4" fill="#1c133c"/>
+                <rect x="28" y="75" width="3" height="2" fill="#84fce0"/>
+                <!-- Hoodie Torso leaning slightly forward -->
+                <rect x="17" y="84" width="15" height="27" fill="#5b43ad"/>
+                <rect x="15" y="84" width="5" height="6" fill="#745cd4"/>
+                <rect x="24" y="86" width="8" height="21" fill="#6b51c4"/>
+                <!-- Seated Legs & Pixel Sneakers under desk -->
+                <rect x="21" y="106" width="17" height="7" fill="#2c225c"/>
+                <rect x="32" y="113" width="6" height="26" fill="#2c225c"/>
+                <rect x="32" y="139" width="10" height="5" fill="#ff69ad"/>
+                <rect x="32" y="142" width="10" height="2" fill="#ffffff"/>
+                <!-- Arm & Typing Hands reaching right to keyboard -->
+                <rect x="22" y="89" width="8" height="10" fill="#745cd4"/>
+                <rect x="28" y="96" width="13" height="5" fill="#745cd4"/>
+                <g class="desk-hands">
+                  <rect x="41" y="98" width="5" height="3" fill="#ffd1b3"/>
+                </g>
+
+                <!-- Side-Profile Desk -->
+                <rect x="34" y="104" width="50" height="5" fill="#9a6ac4"/>
+                <rect x="34" y="109" width="50" height="4" fill="#623c8f"/>
+                <rect x="38" y="113" width="5" height="31" fill="#402563"/>
+                <rect x="76" y="113" width="5" height="31" fill="#402563"/>
+
+                <!-- Side-Profile Laptop (facing LEFT toward developer!) -->
+                <rect x="41" y="101" width="18" height="3" fill="#c5b4f3"/>
+                <rect x="42" y="100" width="9" height="1" fill="#ffe074"/>
+                <!-- Angled laptop lid + glowing screen facing left -->
+                <rect x="57" y="96" width="3" height="6" fill="#201447"/>
+                <rect x="58" y="90" width="3" height="7" fill="#201447"/>
+                <rect x="59" y="84" width="3" height="7" fill="#201447"/>
+                <rect class="desk-screen-glow" x="56" y="96" width="2" height="5" fill="#84fce0"/>
+                <rect class="desk-screen-glow" x="57" y="90" width="2" height="6" fill="#84fce0"/>
+                <rect class="desk-screen-glow" x="58" y="85" width="2" height="5" fill="#84fce0"/>
+
+                <!-- Cute Pixel Cat in SIDE PROFILE (sitting on right edge of desk, facing LEFT <-) -->
+                <g class="desk-cat">
+                  <!-- Pointed pixel ears on head -->
+                  <rect x="66" y="86" width="2" height="3" fill="#ffd447"/>
+                  <rect x="71" y="86" width="2" height="3" fill="#ffd447"/>
+                  <!-- Side-profile head facing left -->
+                  <rect x="65" y="89" width="9" height="8" fill="#ffd447"/>
+                  <!-- Eye & pink nose/cheek facing left -->
+                  <rect x="67" y="91" width="2" height="2" fill="#211548"/>
+                  <rect x="64" y="93" width="1" height="2" fill="#ff69ad"/>
+                  <rect x="67" y="94" width="2" height="1" fill="#ff69ad"/>
+                  <!-- Plump side-profile sitting body + paws -->
+                  <rect x="67" y="97" width="11" height="6" fill="#ffd447"/>
+                  <rect x="69" y="95" width="8" height="3" fill="#ffd447"/>
+                  <rect x="66" y="102" width="3" height="2" fill="#ffd447"/>
+                  <rect x="74" y="102" width="4" height="2" fill="#ffd447"/>
+                  <!-- Animated wagging pink tail on the right -->
+                  <g class="desk-tail">
+                    <rect x="78" y="99" width="3" height="2" fill="#ff69ad"/>
+                    <rect x="80" y="95" width="2" height="5" fill="#ff69ad"/>
+                    <rect x="81" y="93" width="2" height="3" fill="#ffd447"/>
+                  </g>
+                </g>
+              </svg>
+            </div>
+
+            <!-- MÀN HÌNH 3: Màn hình mở đầu game -->
+            <div class="g-slide scr-start" data-slide="2" role="tabpanel" aria-label="Màn hình 3: Màn hình mở đầu game">
+              <svg class="start-emblem" viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true">
+                <rect x="7" y="1" width="2" height="14" fill="#ffe074"/>
+                <rect x="4" y="4" width="8" height="8" fill="#ff9be2"/>
+                <rect x="1" y="7" width="14" height="2" fill="#ffe074"/>
+                <rect x="6" y="6" width="4" height="4" fill="#ffffff"/>
+              </svg>
+              <div class="start-title">Lê Việt Hoàng</div>
+              <div class="start-level">LEVEL: Sinh viên năm 4</div>
+              <button type="button" class="scr-start-btn" id="scr-start-btn" aria-label="PRESS START để cuộn xuống phần Dự án">PRESS START</button>
+            </div>
+
+            <!-- MÀN HÌNH 4: Ảnh dự án (390x693) -->
+            <div class="g-slide scr-shots" data-slide="3" role="tabpanel" aria-label="Màn hình 4: Ảnh dự án KocDemo và SubFlow AI">
+              <div class="shot-viewport">
+                <img class="shot-img active" id="shot-koc" src="assets/shot-kocdemo.jpg" alt="Ảnh màn hình dự án KocDemo" width="390" height="693" />
+                <img class="shot-img" id="shot-sub" src="assets/shot-subflow.jpg" alt="Ảnh màn hình dự án SubFlow AI" width="390" height="693" />
+              </div>
+              <div class="shot-bar">
+                <button type="button" class="shot-tab" data-shot="0" aria-pressed="true" aria-label="Xem ảnh dự án KocDemo">KocDemo</button>
+                <button type="button" class="shot-tab" data-shot="1" aria-pressed="false" aria-label="Xem ảnh dự án SubFlow AI">SubFlow AI</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4 Position Dots -->
+        <div class="screen-dots" role="tablist" aria-label="Chọn màn hình trên máy game">
+          <button type="button" class="scr-dot" data-dot="0" aria-pressed="true" aria-label="Màn hình 1: Chat với AI"></button>
+          <button type="button" class="scr-dot" data-dot="1" aria-pressed="false" aria-label="Màn hình 2: Nhân vật pixel"></button>
+          <button type="button" class="scr-dot" data-dot="2" aria-pressed="false" aria-label="Màn hình 3: Màn hình mở đầu"></button>
+          <button type="button" class="scr-dot" data-dot="3" aria-pressed="false" aria-label="Màn hình 4: Ảnh dự án"></button>
+        </div>
+
+        <div class="handheld-controls">
+          <div class="dpad-group">
+            <button type="button" class="dpad-btn prev" id="hw-prev" aria-label="Màn hình trước"></button>
+            <button type="button" class="dpad-btn next" id="hw-next" aria-label="Màn hình tiếp theo"></button>
+          </div>
+          <div class="select-start" aria-hidden="true"><span></span><span></span></div>
+          <div class="ab-btns">
+            <button type="button" class="hw-btn btn-b" id="hw-btn-b" aria-label="Nút B: Màn hình trước">B</button>
+            <button type="button" class="hw-btn btn-a" id="hw-btn-a" aria-label="Nút A: Màn hình tiếp theo">A</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- BỐ CỤC DỰ ÁN: 1 DANH SÁCH THỐNG NHẤT + NÚT XEM CHI TIẾT -->
+  <section class="block" id="du-an">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Dự án</h2>
+      </div>
+      <div class="rows">
+        <!-- 1. Threads Video Maker -->
+        <article class="row game-pop">
+          <div class="row-summary-grid">
+            <div>
+              <div class="quest-title">
+                <span class="quest-sprite" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 16 16" shape-rendering="crispEdges">
+                    <rect x="2" y="3" width="12" height="10" fill="#ffd447"/>
+                    <rect x="4" y="5" width="8" height="6" fill="#211548"/>
+                    <rect x="7" y="6" width="2" height="4" fill="#ff69ad"/>
+                    <rect x="9" y="7" width="2" height="2" fill="#ff69ad"/>
+                  </svg>
+                </span>
+                <h3>Threads Video Maker</h3>
+              </div>
+              <p class="meta">Python, FastAPI, Playwright, Gemini API, Edge TTS, FFmpeg</p>
+            </div>
+            <div class="row-short">
+              <p>Dán một link bài Threads, vài phút sau có video TikTok hoàn chỉnh.</p>
+            </div>
+          </div>
+          <details class="proj-details" id="tvm-details">
+            <summary>Xem chi tiết</summary>
+            <div class="proj-body">
+              <div class="tvm-detail-grid">
+                <div>
+                  <p>
+                    Kênh TikTok dạng "drama mạng xã hội" phải làm video thủ công: chụp màn hình bài viết, chọn bình luận,
+                    thu giọng, ghép phụ đề. Tôi gom toàn bộ thành một công cụ có giao diện web, chạy trên máy tính,
+                    có cơ chế bản quyền theo máy để bán cho người khác dùng.
+                  </p>
+                  <p class="result"><b>~30 phút → ~3 phút</b> cho mỗi video, phần lớn thời gian còn lại là máy tự chạy.</p>
+                  <ul class="stack">
+                    <li>Python</li><li>FastAPI</li><li>Playwright</li><li>Gemini API</li><li>Edge TTS</li>
+                    <li>FFmpeg</li><li>HTML/CSS/JS</li><li>Git</li>
+                  </ul>
+                </div>
+                <ol class="pipeline" aria-label="Các bước công cụ tự chạy">
+                  <li><div><b>Đọc bài Threads</b><span>Lấy bài gốc, bình luận, số like, ảnh, GIF và video từ dữ liệu có sẵn trong trang, không cần đăng nhập.</span></div></li>
+                  <li><div><b>AI biên tập</b><span>Gemini chọn bình luận đáng xem nhất, viết lời đọc, câu tiêu đề và đánh dấu chỗ chèn meme.</span></div></li>
+                  <li><div><b>Giọng đọc 6 nhân vật</b><span>Đổi cao độ, tốc độ bằng FFmpeg; tự chuyển giọng dự phòng khi máy chủ giọng đọc lỗi.</span></div></li>
+                  <li><div><b>Dựng thẻ Threads</b><span>Thẻ giao diện tối giống thật, ảnh và video giữ đúng tỉ lệ gốc.</span></div></li>
+                  <li><div><b>Ghép video</b><span>Phụ đề chạy theo từng từ, thẻ trượt vào, meme phản ứng có tiếng, câu kết.</span></div></li>
+                </ol>
+              </div>
+            </div>
+          </details>
+        </article>
+
+        <!-- 2. Bot Chân Thật — Chatbot bán hàng Messenger (gộp từ 2 mục thành 1) -->
+        <article class="row game-pop">
+          <div class="row-summary-grid">
+            <div>
+              <div class="quest-title">
+                <span class="quest-sprite" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 16 16" shape-rendering="crispEdges">
+                    <rect x="2" y="3" width="12" height="8" fill="#ff9be2"/>
+                    <rect x="4" y="5" width="2" height="2" fill="#211548"/>
+                    <rect x="10" y="5" width="2" height="2" fill="#211548"/>
+                    <rect x="4" y="11" width="3" height="2" fill="#ff9be2"/>
+                    <rect x="4" y="13" width="2" height="1" fill="#ffe074"/>
+                  </svg>
+                </span>
+                <h3>Bot Chân Thật — Chatbot bán hàng Messenger</h3>
+              </div>
+              <p class="meta">n8n, Gemini, Claude Haiku, PostgreSQL, Supabase</p>
+            </div>
+            <div class="row-short">
+              <p>Chatbot đa agent cho shop giày: đọc ảnh và voice, kiểm tra tồn kho thật, tự sửa câu trả lời và tạo đơn VietQR.</p>
+            </div>
+          </div>
+          <details class="proj-details" id="bot-details">
+            <summary>Xem chi tiết</summary>
+            <div class="proj-body">
+              <div class="tvm-detail-grid">
+                <div>
+                  <p>
+                    Hệ thống chatbot bán hàng đa agent chạy trên n8n, kết nối dữ liệu tồn kho thật trong PostgreSQL và Supabase.
+                    Bot nhận diện sản phẩm từ ảnh hoặc tin nhắn thoại khách gửi, tra chính sách qua RAG, tự kiểm tra chéo
+                    và sửa kết quả trước khi trả lời, đồng thời chuyển sang Telegram cho nhân viên khi cần hỗ trợ trực tiếp.
+                  </p>
+                  <p class="result"><b>104 node n8n</b> xử lý đa agent, kiểm kho thật và tự kiểm tra câu trả lời trước khi gửi.</p>
+                  <ul class="stack">
+                    <li>n8n</li><li>Gemini API</li><li>Claude Haiku</li><li>PostgreSQL</li><li>Supabase</li>
+                    <li>RAG</li><li>VietQR / SePay</li><li>Telegram</li>
+                  </ul>
+                </div>
+                <ol class="pipeline" aria-label="Các bước quy trình Bot Chân Thật">
+                  <li><div><b>Gom tin nhắn Messenger</b><span>Nhận webhook và gom nhiều tin nhắn gửi liên tiếp của khách thành một lượt xử lý liền mạch.</span></div></li>
+                  <li><div><b>Đọc ảnh, voice &amp; chặn bẫy</b><span>Phân tích ảnh giày hoặc chuyển giọng nói thành chữ, đồng thời lọc prompt injection trước khi gọi AI.</span></div></li>
+                  <li><div><b>Điều phối agent &amp; tra kho</b><span>Chuyển đúng luồng agent tư vấn sản phẩm (check size, tồn kho PostgreSQL) hoặc CSKH tra chính sách RAG.</span></div></li>
+                  <li><div><b>Tự kiểm tra &amp; sửa lỗi</b><span>Đối chiếu câu trả lời với dữ liệu thật; nếu thiếu hoặc sai sẽ tự chạy bước sửa lại trước khi gửi khách.</span></div></li>
+                  <li><div><b>Tạo đơn VietQR &amp; bàn giao</b><span>Ghi nhận đơn hàng, đối soát webhook thanh toán và đẩy thông báo Telegram kèm nút cho nhân viên.</span></div></li>
+                </ol>
+              </div>
+            </div>
+          </details>
+        </article>
+
+        <!-- 3. SubFlow AI -->
+        <article class="row game-pop">
+          <div class="row-summary-grid">
+            <div>
+              <div class="quest-title">
+                <span class="quest-sprite" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 16 16" shape-rendering="crispEdges">
+                    <rect x="2" y="3" width="12" height="10" fill="#3a2873"/>
+                    <rect x="2" y="3" width="12" height="2" fill="#ffd4f2"/>
+                    <rect x="6" y="6" width="2" height="5" fill="#ffe074"/>
+                    <rect x="8" y="7" width="2" height="3" fill="#ffe074"/>
+                    <rect x="10" y="8" width="1" height="1" fill="#ffe074"/>
+                  </svg>
+                </span>
+                <h3>SubFlow AI</h3>
+              </div>
+              <p class="meta">Python, Gemini API, Docker, VPS</p>
+            </div>
+            <div class="row-short">
+              <p>Trình phát video YouTube kèm phụ đề song ngữ, giữ thuật ngữ kỹ thuật và tự triển khai bằng Docker lên VPS.</p>
+            </div>
+          </div>
+          <details class="proj-details" id="subflow-details">
+            <summary>Xem chi tiết</summary>
+            <div class="proj-body">
+              <div class="tvm-detail-grid">
+                <div>
+                  <p>
+                    Công cụ hỗ trợ xem bài giảng công nghệ bằng tiếng Anh: nhập link YouTube để tự lấy phụ đề gốc,
+                    gom các đoạn ngắn thành câu hoàn chỉnh, dịch sang tiếng Việt có bảo vệ thuật ngữ chuyên ngành AI
+                    và chia chương theo mốc thời gian, đóng gói Docker chạy trên máy chủ riêng.
+                  </p>
+                  <p class="result"><b>Song ngữ + Cache</b> bảo vệ thuật ngữ chuyên ngành khi dịch, tự phục vụ trên VPS riêng.</p>
+                  <ul class="stack">
+                    <li>Python</li><li>Gemini API</li><li>ThreadPool</li><li>HTML/CSS/JS</li><li>Docker</li><li>VPS</li>
+                  </ul>
+                  <div class="links"><a href="https://yt.kophaihoang.duckdns.org" target="_blank" rel="noopener">Mở bản đang chạy</a></div>
+                </div>
+                <ol class="pipeline" aria-label="Các bước xử lý của SubFlow AI">
+                  <li><div><b>Tách phụ đề YouTube</b><span>Lấy track phụ đề gốc kèm mốc thời gian chuẩn từ link video người dùng nhập vào.</span></div></li>
+                  <li><div><b>Gom câu &amp; khóa thuật ngữ</b><span>Nối các mảnh phụ đề rời thành câu hoàn chỉnh và giữ nguyên danh sách thuật ngữ AI/kỹ thuật tiếng Anh.</span></div></li>
+                  <li><div><b>Dịch ngữ cảnh bằng AI</b><span>Gọi Gemini API (hoặc luồng dịch nhanh song song) để chuyển ngữ mượt đúng ngữ cảnh bài giảng.</span></div></li>
+                  <li><div><b>Chia chương &amp; lưu cache</b><span>Tạo mốc chương theo thời lượng video, lưu cache JSON kèm giới hạn tần suất theo IP.</span></div></li>
+                  <li><div><b>Phát trực tiếp qua Docker</b><span>Hiển thị trình phát video đồng bộ phụ đề song ngữ theo thời gian thực trên VPS riêng.</span></div></li>
+                </ol>
+              </div>
+            </div>
+          </details>
+        </article>
+
+        <!-- 4. KocDemo -->
+        <article class="row game-pop">
+          <div class="row-summary-grid">
+            <div>
+              <div class="quest-title">
+                <span class="quest-sprite" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 16 16" shape-rendering="crispEdges">
+                    <rect x="7" y="2" width="2" height="12" fill="#ffe074"/>
+                    <rect x="5" y="4" width="6" height="2" fill="#ffe074"/>
+                    <rect x="3" y="6" width="10" height="4" fill="#ff9be2"/>
+                    <rect x="5" y="10" width="6" height="2" fill="#ffe074"/>
+                  </svg>
+                </span>
+                <h3>KocDemo</h3>
+              </div>
+              <p class="meta">HTML, CSS, JavaScript, GitHub Pages</p>
+            </div>
+            <div class="row-short">
+              <p>Quy trình booking KOC cho shop thời trang: chấm điểm, chống trùng, nhắc follow-up và báo cáo tỷ lệ chốt.</p>
+            </div>
+          </div>
+          <details class="proj-details" id="koc-details">
+            <summary>Xem chi tiết</summary>
+            <div class="proj-body">
+              <div class="tvm-detail-grid">
+                <div>
+                  <p>
+                    Bản demo quy trình booking KOC cho shop thời trang: quản lý danh sách kênh, chấm điểm phù hợp trước khi nhắn,
+                    chống nhắn trùng kênh, nhắc follow-up, cảnh báo quá hạn đăng bài và đo hiệu quả theo nguồn tìm kiếm.
+                    Toàn bộ chạy trực tiếp trên trình duyệt để người xem thao tác thử ngay.
+                  </p>
+                  <p class="result"><b>1 file HTML/JS</b> chạy không cần máy chủ, quản lý đủ 8 trạng thái từ tìm kênh đến lên bài.</p>
+                  <ul class="stack">
+                    <li>HTML</li><li>CSS</li><li>JavaScript</li><li>GitHub Pages</li>
+                  </ul>
+                  <div class="links">
+                    <a href="https://kophaihoang.github.io/KocDemo/" target="_blank" rel="noopener">Dùng thử</a>
+                    <a href="https://github.com/kophaihoang/KocDemo" target="_blank" rel="noopener">Mã nguồn</a>
+                  </div>
+                </div>
+                <ol class="pipeline" aria-label="Các bước quy trình KocDemo">
+                  <li><div><b>Chấm điểm &amp; chống trùng</b><span>Tính điểm KOC theo 4 tiêu chí có trọng số và tự cảnh báo nếu link kênh bị nhập trùng hoặc thiếu người phụ trách.</span></div></li>
+                  <li><div><b>Lọc việc cần làm theo ngày</b><span>Tự xếp danh sách KOC cần nhắn nhắc lại, sắp trễ hạn đăng bài hoặc cần chuyển trạng thái.</span></div></li>
+                  <li><div><b>Nhắc follow-up &amp; hạn đăng</b><span>Theo dõi số lần nhắn tối đa và tự tính hạn đăng bài sau khi KOC xác nhận nhận mẫu.</span></div></li>
+                  <li><div><b>Đo phễu &amp; tỷ lệ chốt</b><span>Thống kê tỷ lệ phản hồi, đồng ý, đăng đúng hạn và so sánh hiệu quả theo từng nguồn tìm KOC.</span></div></li>
+                  <li><div><b>Chạy tĩnh trên GitHub Pages</b><span>Đóng gói trọn bộ giao diện và logic vào 1 file duy nhất, nạp lại trang là quay về dữ liệu mẫu.</span></div></li>
+                </ol>
+              </div>
+            </div>
+          </details>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- DỰ ÁN HỌC TẬP -->
+  <section class="block">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Thương mại điện tử và dữ liệu</h2>
+        <p class="lead">Các dự án môn học tại trường, phần nền giúp tôi hiểu công cụ được dùng vào việc kinh doanh nào.</p>
+      </div>
+      <div class="pixel-box table-frame game-pop">
+        <table class="study">
+          <thead><tr><th>Dự án</th><th>Đã làm</th><th>Điểm</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>Tối ưu hóa công cụ tìm kiếm (SEO)</td>
+              <td>Đưa từ khóa mục tiêu lên Top 4 Google, tối ưu cấu trúc nội dung theo chuẩn on-page. SEMrush, Search Console, FatRank.</td>
+              <td class="score">9.0</td>
+            </tr>
+            <tr>
+              <td>Phân tích dữ liệu Google Merchandise Store</td>
+              <td>Phân tích hành vi người dùng theo nhóm khách, dựng báo cáo traffic, tỷ lệ chuyển đổi, hành trình mua. GA4, Looker Studio.</td>
+              <td class="score">9.0</td>
+            </tr>
+            <tr>
+              <td>Quản trị tác nghiệp TMĐT (trưởng nhóm)</td>
+              <td>Làm A+ Content cho website trang sức bạc, quản lý sản phẩm trên Odoo, tạo ảnh bằng Gemini.</td>
+              <td class="score">9.0</td>
+            </tr>
+            <tr>
+              <td>Cuộc thi video "I AM HUBER"</td>
+              <td>Lên ý tưởng, viết kịch bản, quay dựng bằng CapCut. Giải Khuyến khích, 41K lượt xem.</td>
+              <td class="score">Giải KK</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- CÁCH TÔI LÀM VIỆC & HỌC VẤN -->
+  <section class="block">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Cách tôi làm việc</h2>
+      </div>
+      <div class="two">
+        <div class="work-stack">
+          <ul class="work-list">
+            <li class="work-item game-pop">
+              <span class="quest-sprite" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 16 16" shape-rendering="crispEdges">
+                  <rect x="3" y="2" width="10" height="12" fill="#ffe074"/>
+                  <rect x="5" y="4" width="6" height="2" fill="#211548"/>
+                  <rect x="5" y="7" width="4" height="2" fill="#211548"/>
+                  <rect x="5" y="10" width="6" height="2" fill="#ff69ad"/>
+                </svg>
+              </span>
+              <div>
+                <h3>Phân tích yêu cầu</h3>
+                <p>Chia bài toán thành từng bước, viết yêu cầu rõ để AI làm đúng.</p>
+              </div>
+            </li>
+
+            <li class="work-item game-pop">
+              <span class="quest-sprite" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 16 16" shape-rendering="crispEdges">
+                  <rect x="3" y="2" width="10" height="10" fill="#84fce0"/>
+                  <rect x="6" y="12" width="4" height="2" fill="#84fce0"/>
+                  <rect x="5" y="6" width="2" height="2" fill="#211548"/>
+                  <rect x="7" y="8" width="2" height="2" fill="#211548"/>
+                  <rect x="9" y="4" width="2" height="4" fill="#211548"/>
+                </svg>
+              </span>
+              <div>
+                <h3>Kiểm tra và nghiệm thu</h3>
+                <p>Chạy thử, tìm lỗi, chỉ nhận kết quả khi có bằng chứng.</p>
+              </div>
+            </li>
+
+            <li class="work-item game-pop">
+              <span class="quest-sprite" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 16 16" shape-rendering="crispEdges">
+                  <rect x="2" y="6" width="4" height="4" fill="#ff9be2"/>
+                  <rect x="6" y="7" width="4" height="2" fill="#fff9ff"/>
+                  <rect x="10" y="3" width="4" height="4" fill="#ffe074"/>
+                  <rect x="10" y="9" width="4" height="4" fill="#84fce0"/>
+                </svg>
+              </span>
+              <div>
+                <h3>Dựng quy trình trên n8n</h3>
+                <p>Nối các bước và API bằng giao diện kéo thả.</p>
+              </div>
+            </li>
+
+            <li class="work-item game-pop">
+              <span class="quest-sprite" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 16 16" shape-rendering="crispEdges">
+                  <rect x="7" y="2" width="2" height="8" fill="#ffe074"/>
+                  <rect x="5" y="4" width="6" height="4" fill="#ff9be2"/>
+                  <rect x="3" y="8" width="10" height="3" fill="#84fce0"/>
+                  <rect x="5" y="11" width="6" height="3" fill="#ffd447"/>
+                </svg>
+              </span>
+              <div>
+                <h3>Đưa sản phẩm lên mạng</h3>
+                <p>GitHub Pages, VPS.</p>
+              </div>
+            </li>
+          </ul>
+
+          <div class="skill-slot-card game-pop">
+            <div class="skill-head">
+              <h3>Công cụ đã dùng trong dự án (cùng trợ lý AI)</h3>
+              <div class="inv-rack" aria-hidden="true">
+                <span class="inv-cell equipped" title="Python"><svg viewBox="0 0 16 16"><rect x="5" y="2" width="6" height="4" fill="#84fce0"/><rect x="3" y="6" width="7" height="4" fill="#84fce0"/><rect x="6" y="10" width="7" height="4" fill="#ffe074"/><rect x="6" y="3" width="1" height="1" fill="#211548"/></svg></span>
+                <span class="inv-cell" title="Playwright & FFmpeg"><svg viewBox="0 0 16 16"><rect x="2" y="3" width="12" height="10" fill="#ff9be2"/><rect x="6" y="6" width="2" height="4" fill="#211548"/><rect x="8" y="7" width="2" height="2" fill="#211548"/></svg></span>
+                <span class="inv-cell" title="Gemini API"><svg viewBox="0 0 16 16"><rect x="7" y="2" width="2" height="12" fill="#84fce0"/><rect x="5" y="4" width="6" height="8" fill="#ffd4f2"/><rect x="2" y="7" width="12" height="2" fill="#84fce0"/></svg></span>
+                <span class="inv-cell" title="PostgreSQL"><img src="assets/icons/postgresql.svg" alt="" width="20" height="20" /></span>
+                <span class="inv-cell" title="Supabase"><svg viewBox="0 0 16 16"><rect x="7" y="2" width="4" height="5" fill="#84fce0"/><rect x="4" y="6" width="8" height="3" fill="#84fce0"/><rect x="5" y="9" width="4" height="5" fill="#84fce0"/></svg></span>
+                <span class="inv-cell" title="Docker"><svg viewBox="0 0 16 16"><rect x="4" y="4" width="3" height="3" fill="#84fce0"/><rect x="8" y="4" width="3" height="3" fill="#84fce0"/><rect x="2" y="8" width="12" height="4" fill="#ffd4f2"/><rect x="4" y="12" width="8" height="2" fill="#84fce0"/></svg></span>
+              </div>
+            </div>
+            <p>Python, Playwright, FFmpeg, Gemini API, PostgreSQL, Supabase, Docker.</p>
+          </div>
+
+          <div class="skill-slot-card game-pop">
+            <div class="skill-head">
+              <h3>Thương mại điện tử và dữ liệu</h3>
+              <div class="inv-rack" aria-hidden="true">
+                <span class="inv-cell" title="SEO"><svg viewBox="0 0 16 16"><rect x="3" y="3" width="6" height="6" fill="#ffe074"/><rect x="5" y="5" width="2" height="2" fill="#211548"/><rect x="9" y="9" width="4" height="4" fill="#ff9be2"/></svg></span>
+                <span class="inv-cell" title="GA4 & Looker Studio"><svg viewBox="0 0 16 16"><rect x="3" y="9" width="2" height="5" fill="#ff9be2"/><rect x="7" y="6" width="2" height="8" fill="#ffe074"/><rect x="11" y="3" width="2" height="11" fill="#84fce0"/></svg></span>
+                <span class="inv-cell" title="Odoo, Excel, SQL"><svg viewBox="0 0 16 16"><rect x="2" y="3" width="5" height="5" fill="#ff9be2"/><rect x="9" y="3" width="5" height="5" fill="#ffd4f2"/><rect x="2" y="10" width="5" height="4" fill="#84fce0"/><rect x="9" y="10" width="5" height="4" fill="#ffe074"/></svg></span>
+              </div>
+            </div>
+            <p>SEO, GA4, Looker Studio, Odoo, Excel, SQL.</p>
+          </div>
+        </div>
+
+        <div class="edu pixel-box game-pop">
+          <div class="edu-crest" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 16 16" shape-rendering="crispEdges">
+              <rect x="2" y="5" width="12" height="2" fill="#ffe074"/><rect x="6" y="3" width="4" height="2" fill="#ffe074"/>
+              <rect x="4" y="7" width="8" height="4" fill="#ffd4f2"/><rect x="12" y="7" width="2" height="5" fill="#ff9be2"/>
+            </svg>
+          </div>
+          <h3>Đại học Ngân hàng TP.HCM</h3>
+          <p>Hệ thống thông tin quản lý — chuyên ngành Quản trị thương mại điện tử</p>
+          <p class="muted">2023 – 2027 (dự kiến)</p>
+          <p class="muted" style="margin-top:18px">Tiếng Anh: TOEIC 630</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <h2>Cần người dựng công cụ tự động?</h2>
+    <p>Tôi đang tìm vị trí thực tập về AI Automation, thương mại điện tử hoặc phân tích nghiệp vụ tại TP.HCM.</p>
+    <div class="contact">
+      <a class="btn primary copy-trigger" href="mailto:kophaileviethoang@gmail.com" data-copy="kophaileviethoang@gmail.com" data-copy-kind="email" title="Bấm để copy email">kophaileviethoang@gmail.com</a>
+      <a class="btn copy-trigger" href="https://zalo.me/0349595025" target="_blank" rel="noopener" data-copy="0349595025" data-copy-kind="zalo" title="Copy SĐT và mở Zalo" aria-label="0349 595 025 - bấm để copy số điện thoại và mở Zalo">0349 595 025</a>
+      <a class="btn" href="https://github.com/kophaihoang" target="_blank" rel="noopener">github.com/kophaihoang</a>
+    </div>
+    <p class="small">© 2026 Lê Việt Hoàng</p>
+  </div>
+</footer>
+
+<div class="copy-toast" id="copy-toast" role="status" aria-live="polite"></div>
+
+<script>
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const rootEl = document.documentElement;
+  const toggleBtn = document.getElementById('theme-toggle');
+
+  // =========================================================
+  // 1. DAY / NIGHT CELESTIAL ARC SWITCH
+  // =========================================================
+  const getBaseDeg = () => (window.innerWidth <= 880 ? 16 : 42);
+  let orbitDeg = getBaseDeg();
+  let arcTimer = null;
+
+  const setOrbitInstant = (deg) => {
+    rootEl.classList.add('orbit-instant');
+    rootEl.style.setProperty('--orbit-deg', `${deg}deg`);
+    void rootEl.offsetWidth;
+    requestAnimationFrame(() => rootEl.classList.remove('orbit-instant'));
+  };
+
+  const applyTheme = (theme, animateArc = false) => {
+    rootEl.setAttribute('data-theme', theme);
+    if (toggleBtn) toggleBtn.setAttribute('aria-pressed', theme === 'night' ? 'true' : 'false');
+    if (animateArc && !reducedMotion) {
+      orbitDeg += 180;
+      rootEl.style.setProperty('--orbit-deg', `${orbitDeg}deg`);
+      rootEl.classList.add('sky-arcing');
+      clearTimeout(arcTimer);
+      arcTimer = setTimeout(() => rootEl.classList.remove('sky-arcing'), 680);
+    } else {
+      orbitDeg = getBaseDeg() + (theme === 'night' ? 180 : 0);
+      setOrbitInstant(orbitDeg);
+    }
+    try { localStorage.setItem('kph-theme', theme); } catch (_) {}
+  };
+
+  let initTheme = 'day';
+  try {
+    const saved = localStorage.getItem('kph-theme');
+    if (saved === 'night' || saved === 'day') initTheme = saved;
+  } catch (_) {}
+  applyTheme(initTheme, false);
+
+  let lastIsMobile = window.innerWidth <= 880;
+  window.addEventListener('resize', () => {
+    const isMobile = window.innerWidth <= 880;
+    if (isMobile !== lastIsMobile) {
+      lastIsMobile = isMobile;
+      const curTheme = rootEl.getAttribute('data-theme') || 'day';
+      orbitDeg = getBaseDeg() + (curTheme === 'night' ? 180 : 0);
+      setOrbitInstant(orbitDeg);
+    }
+  }, { passive: true });
+
+  if (toggleBtn) {
+    toggleBtn.addEventListener('click', (e) => {
+      const r = toggleBtn.getBoundingClientRect();
+      const next = rootEl.getAttribute('data-theme') === 'day' ? 'night' : 'day';
+      applyTheme(next, true);
+      if (!reducedMotion && window.__burstFX) {
+        window.__burstFX(e.clientX || r.left + r.width / 2, e.clientY || r.top + r.height / 2, 16);
+      }
+    });
+  }
+
+  // =========================================================
+  // 2. HANDHELD CONSOLE 4-SCREEN CAROUSEL + CHAT TYPING
+  // =========================================================
+  const handheld = document.getElementById('handheld');
+  const slides = Array.from(document.querySelectorAll('.g-slide'));
+  const dots = Array.from(document.querySelectorAll('.scr-dot'));
+  const shotImgs = Array.from(document.querySelectorAll('.shot-img'));
+  const shotTabs = Array.from(document.querySelectorAll('.shot-tab'));
+  const chatLines = Array.from(document.querySelectorAll('#chat-feed .chat-msg'));
+  const fullChatTexts = chatLines.map((el) => el.querySelector('.chat-text').textContent);
+
+  let currentSlide = 0;
+  let currentShot = 0;
+  let slideTimer = null;
+  let shotTimer = null;
+  let chatTimers = [];
+  let isPausedByUser = false;
+
+  const clearChatTimers = () => {
+    chatTimers.forEach((id) => clearTimeout(id));
+    chatTimers = [];
+    document.querySelectorAll('.chat-typing-cursor').forEach((c) => c.remove());
+  };
+
+  const playChatTyping = () => {
+    clearChatTimers();
+    if (reducedMotion) {
+      chatLines.forEach((el, idx) => {
+        el.classList.add('shown');
+        el.querySelector('.chat-text').textContent = fullChatTexts[idx];
+      });
+      return;
+    }
+    chatLines.forEach((el, idx) => {
+      el.classList.remove('shown');
+      el.querySelector('.chat-text').textContent = '';
+    });
+
+    let delay = 120;
+    chatLines.forEach((el, idx) => {
+      const target = fullChatTexts[idx];
+      const textSpan = el.querySelector('.chat-text');
+      const startLineAt = delay;
+      chatTimers.push(setTimeout(() => {
+        el.classList.add('shown');
+        const cursor = document.createElement('span');
+        cursor.className = 'chat-typing-cursor';
+        cursor.setAttribute('aria-hidden', 'true');
+        el.appendChild(cursor);
+        let charIdx = 0;
+        const stepChar = () => {
+          charIdx++;
+          textSpan.textContent = target.slice(0, charIdx);
+          if (charIdx < target.length) {
+            chatTimers.push(setTimeout(stepChar, 22));
+          } else {
+            cursor.remove();
+          }
+        };
+        stepChar();
+      }, startLineAt));
+      delay += Math.max(460, target.length * 24 + 260);
+    });
+  };
+
+  const showShot = (idx) => {
+    currentShot = idx % shotImgs.length;
+    shotImgs.forEach((img, i) => img.classList.toggle('active', i === currentShot));
+    shotTabs.forEach((tab, i) => tab.setAttribute('aria-pressed', i === currentShot ? 'true' : 'false'));
+  };
+
+  const stopAutoTimers = () => {
+    clearInterval(slideTimer);
+    clearTimeout(shotTimer);
+    slideTimer = null;
+    shotTimer = null;
+  };
+
+  const scheduleShotSwitch = () => {
+    clearTimeout(shotTimer);
+    if (reducedMotion || isPausedByUser || currentSlide !== 3) return;
+    shotTimer = setTimeout(() => {
+      if (currentSlide === 3 && !isPausedByUser) showShot(1);
+    }, 3000);
+  };
+
+  const goToSlide = (idx) => {
+    currentSlide = (idx + slides.length) % slides.length;
+    slides.forEach((s, i) => s.classList.toggle('active', i === currentSlide));
+    dots.forEach((d, i) => d.setAttribute('aria-pressed', i === currentSlide ? 'true' : 'false'));
+
+    if (currentSlide === 0) playChatTyping();
+    else clearChatTimers();
+
+    if (currentSlide === 3) {
+      showShot(0);
+      scheduleShotSwitch();
+    } else {
+      clearTimeout(shotTimer);
+    }
+  };
+
+  const startAuto = () => {
+    stopAutoTimers();
+    if (reducedMotion || isPausedByUser) return;
+    slideTimer = setInterval(() => {
+      goToSlide(currentSlide + 1);
+    }, 6000);
+    if (currentSlide === 3) scheduleShotSwitch();
+  };
+
+  if (handheld) {
+    handheld.addEventListener('mouseenter', () => {
+      isPausedByUser = true;
+      stopAutoTimers();
+    });
+    handheld.addEventListener('mouseleave', () => {
+      isPausedByUser = false;
+      startAuto();
+    });
+    handheld.addEventListener('focusin', () => {
+      isPausedByUser = true;
+      stopAutoTimers();
+    });
+    handheld.addEventListener('focusout', (e) => {
+      if (!handheld.contains(e.relatedTarget)) {
+        isPausedByUser = false;
+        startAuto();
+      }
+    });
+  }
+
+  const gameScreen = document.getElementById('game-screen');
+  if (gameScreen) {
+    gameScreen.addEventListener('click', (e) => {
+      if (e.target.closest('button, a')) return;
+      goToSlide(currentSlide + 1);
+      if (!isPausedByUser) startAuto();
+      if (!reducedMotion && window.__burstFX && e.clientX) window.__burstFX(e.clientX, e.clientY, 10);
+    });
+  }
+
+  dots.forEach((dot) => {
+    dot.addEventListener('click', (e) => {
+      goToSlide(parseInt(dot.dataset.dot, 10));
+      if (!isPausedByUser) startAuto();
+      if (!reducedMotion && window.__burstFX && e.clientX) window.__burstFX(e.clientX, e.clientY, 8);
+    });
+  });
+
+  shotTabs.forEach((tab) => {
+    tab.addEventListener('click', (e) => {
+      clearTimeout(shotTimer);
+      showShot(parseInt(tab.dataset.shot, 10));
+      if (!reducedMotion && window.__burstFX && e.clientX) window.__burstFX(e.clientX, e.clientY, 8);
+    });
+  });
+
+  ['hw-prev', 'hw-btn-b'].forEach((id) => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener('click', (e) => {
+      goToSlide(currentSlide - 1);
+      if (!isPausedByUser) startAuto();
+      if (!reducedMotion && window.__burstFX && e.clientX) window.__burstFX(e.clientX, e.clientY, 8);
+    });
+  });
+  ['hw-next', 'hw-btn-a'].forEach((id) => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener('click', (e) => {
+      goToSlide(currentSlide + 1);
+      if (!isPausedByUser) startAuto();
+      if (!reducedMotion && window.__burstFX && e.clientX) window.__burstFX(e.clientX, e.clientY, 8);
+    });
+  });
+
+  const startBtn = document.getElementById('scr-start-btn');
+  if (startBtn) {
+    startBtn.addEventListener('click', (e) => {
+      const target = document.getElementById('du-an');
+      if (target) target.scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth' });
+      if (!reducedMotion && window.__burstFX && e.clientX) window.__burstFX(e.clientX, e.clientY, 14);
+    });
+  }
+
+  // Kick off Screen 1 + auto-carousel (unless reduced motion)
+  playChatTyping();
+  startAuto();
+
+  // =========================================================
+  // 3. SKILL SLOT HOTBAR + XP BAR + PIXEL FX
+  // =========================================================
+  const invCells = document.querySelectorAll('.inv-cell');
+  invCells.forEach((cell) => {
+    cell.addEventListener('click', (e) => {
+      invCells.forEach((c) => c.classList.remove('equipped'));
+      cell.classList.add('equipped');
+      if (!reducedMotion && window.__burstFX && e.clientX) window.__burstFX(e.clientX, e.clientY, 8, ['#ffd447', '#ffffff']);
+    });
+  });
+
+  const xpFill = document.getElementById('xp-fill');
+  const updateXP = () => {
+    if (!xpFill) return;
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    const pct = max > 0 ? Math.min(100, Math.max(0, (window.scrollY / max) * 100)) : 100;
+    xpFill.style.width = `${Math.round(pct)}%`;
+  };
+  window.addEventListener('scroll', updateXP, { passive: true });
+  updateXP();
+
+  if (!reducedMotion) {
+    const layers = document.querySelectorAll('.sky-layer[data-parallax]');
+    const heroEl = document.querySelector('header.hero');
+    const mainEl = document.querySelector('main');
+
+    // Assign RPG slash wipe (left->right) & directional outside-edge fly-in/out targets
+    const animTargets = [];
+    document.querySelectorAll('section.block .section-head h2, section.block .section-head .lead, footer h2').forEach((el) => {
+      el.classList.add('wipe-ltr');
+      if (el.classList.contains('lead')) el.style.setProperty('--d', '95ms');
+      animTargets.push(el);
+    });
+    document.querySelectorAll('.rows .row').forEach((el, idx) => {
+      el.classList.add(idx % 2 === 0 ? 'fly-left' : 'fly-right');
+      animTargets.push(el);
+    });
+    document.querySelectorAll('.table-frame').forEach((el) => {
+      el.classList.add('fly-up');
+      animTargets.push(el);
+    });
+    document.querySelectorAll('.work-item').forEach((el, idx) => {
+      el.classList.add(idx % 2 === 0 ? 'fly-left' : 'fly-right');
+      el.style.setProperty('--d', `${(idx % 4) * 50}ms`);
+      animTargets.push(el);
+    });
+    document.querySelectorAll('.skill-slot-card').forEach((el, idx) => {
+      el.classList.add(idx % 2 === 0 ? 'fly-left' : 'fly-right');
+      el.style.setProperty('--d', `${idx * 65}ms`);
+      animTargets.push(el);
+    });
+    const eduEl = document.querySelector('.edu');
+    if (eduEl) {
+      eduEl.classList.add('fly-right');
+      eduEl.style.setProperty('--d', '60ms');
+      animTargets.push(eduEl);
+    }
+    document.querySelectorAll('footer p:not(.small), footer .contact, footer .small').forEach((el, idx) => {
+      el.classList.add('fly-up');
+      el.style.setProperty('--d', `${idx * 55}ms`);
+      animTargets.push(el);
+    });
+
+    let lastScrollY = window.scrollY || window.pageYOffset || 0;
+    let initialized = false;
+    let burstBudgetAtFrame = 0;
+
+    const triggerImpact = (el) => {
+      if (!initialized || el.dataset.lockPending === '1') return;
+      el.dataset.lockPending = '1';
+      setTimeout(() => {
+        el.dataset.lockPending = '';
+        if (!el.classList.contains('is-in')) return;
+        el.classList.add('just-hit');
+        setTimeout(() => el.classList.remove('just-hit'), 380);
+        if (burstBudgetAtFrame > 0 && typeof window.__burstFX === 'function' && (el.classList.contains('row') || el.classList.contains('table-frame') || el.classList.contains('edu'))) {
+          burstBudgetAtFrame--;
+          const rect = el.getBoundingClientRect();
+          const vw = window.innerWidth || 1280;
+          const vh = window.innerHeight || 800;
+          if (rect.bottom > 40 && rect.top < vh) {
+            const bx = el.classList.contains('fly-right') ? Math.min(vw - 24, rect.right - 22) : Math.max(24, rect.left + 22);
+            const by = Math.max(40, Math.min(vh - 40, rect.top + 34));
+            window.__burstFX(bx, by, 7);
+          }
+        }
+      }, 170);
+    };
+
+    const getLayoutRect = (el) => {
+      let top = 0;
+      let cur = el;
+      while (cur) {
+        top += cur.offsetTop || 0;
+        cur = cur.offsetParent;
+      }
+      const height = el.offsetHeight || 0;
+      const scrollY = window.scrollY || window.pageYOffset || 0;
+      const vpTop = top - scrollY;
+      return { top: vpTop, bottom: vpTop + height, height };
+    };
+
+    const syncScrollAnimations = () => {
+      const vh = window.innerHeight || 800;
+      const docH = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight || 0);
+      const currY = window.scrollY || window.pageYOffset || 0;
+      const dy = currY - lastScrollY;
+      lastScrollY = currY;
+      const scrollingUp = dy < -0.5;
+      const nearBottom = currY + vh >= docH - 36;
+      burstBudgetAtFrame = 2;
+
+      animTargets.forEach((el) => {
+        const inFooter = !!el.closest('footer');
+        const r = getLayoutRect(el);
+        if (inFooter && nearBottom) {
+          const wasIn = el.classList.contains('is-in');
+          el.classList.remove('is-eject-bot', 'is-past');
+          if (!wasIn) {
+            el.classList.add('is-in');
+            if (initialized) triggerImpact(el);
+          }
+          return;
+        }
+        if (r.bottom < vh * 0.06) {
+          el.classList.remove('is-in', 'is-eject-bot', 'just-hit');
+          el.classList.add('is-past');
+        } else if (scrollingUp && r.top > vh * 0.80) {
+          el.classList.remove('is-in', 'is-past', 'just-hit');
+          el.classList.add('is-eject-bot');
+        } else {
+          const enterLine = inFooter ? vh * 0.98 : vh * 0.92;
+          const canShow = scrollingUp ? (r.top <= vh * 0.82) : (r.top <= enterLine);
+          if (canShow && r.bottom >= vh * 0.06) {
+            const wasIn = el.classList.contains('is-in');
+            el.classList.remove('is-eject-bot', 'is-past');
+            if (!wasIn) {
+              el.classList.add('is-in');
+              if (initialized) triggerImpact(el);
+            }
+          } else if (r.top > enterLine) {
+            el.classList.remove('is-in', 'is-past', 'just-hit');
+          }
+        }
+      });
+    };
+
+    syncScrollAnimations();
+    initialized = true;
+
+    let velRaw = 0;
+    let curSkew = 0;
+    let curHeroP = 0;
+    let prevKinY = window.scrollY || 0;
+    let kinRaf = null;
+
+    const runScrollKinematics = () => {
+      const currY = window.scrollY || 0;
+      const clampedY = Math.min(currY, 1800);
+      layers.forEach((layer) => {
+        const speed = parseFloat(layer.dataset.parallax) || 0;
+        layer.style.transform = `translate3d(0, ${-Math.round(clampedY * speed)}px, 0)`;
+      });
+
+      const targetHeroP = Math.min(1, Math.max(0, currY / 520));
+      curHeroP += (targetHeroP - curHeroP) * 0.34;
+      if (Math.abs(targetHeroP - curHeroP) < 0.004) curHeroP = targetHeroP;
+      if (heroEl) heroEl.style.setProperty('--hero-p', curHeroP.toFixed(4));
+
+      velRaw *= 0.80;
+      const targetSkew = Math.max(-1.6, Math.min(1.6, velRaw * 0.032));
+      curSkew += (targetSkew - curSkew) * 0.30;
+      if (Math.abs(curSkew) < 0.025 && Math.abs(velRaw) < 0.5) curSkew = 0;
+      if (mainEl) mainEl.style.setProperty('--scroll-skew', `${curSkew.toFixed(3)}deg`);
+
+      if (Math.abs(targetHeroP - curHeroP) > 0.002 || Math.abs(curSkew) > 0.02 || Math.abs(velRaw) > 0.5) {
+        kinRaf = requestAnimationFrame(runScrollKinematics);
+      } else {
+        kinRaf = null;
+      }
+    };
+
+    runScrollKinematics();
+    window.addEventListener('resize', syncScrollAnimations, { passive: true });
+    window.addEventListener('scroll', () => {
+      const currY = window.scrollY || 0;
+      velRaw = Math.max(-60, Math.min(60, currY - prevKinY));
+      prevKinY = currY;
+      syncScrollAnimations();
+      if (!kinRaf) kinRaf = requestAnimationFrame(runScrollKinematics);
+    }, { passive: true });
+
+    const canvas = document.getElementById('fx-canvas');
+    if (canvas && canvas.getContext) {
+      const ctx = canvas.getContext('2d');
+      let W = 0, H = 0;
+      const resize = () => {
+        W = canvas.width = window.innerWidth;
+        H = canvas.height = window.innerHeight;
+      };
+      resize();
+      window.addEventListener('resize', resize, { passive: true });
+
+      const ambient = Array.from({ length: 22 }, () => ({
+        x: Math.random() * (window.innerWidth || 1280),
+        y: Math.random() * (window.innerHeight || 800),
+        vx: (Math.random() - 0.5) * 0.45,
+        vy: 0.35 + Math.random() * 0.55,
+        s: Math.random() > 0.5 ? 4 : 3,
+        phase: Math.random() * 6.28
+      }));
+      const bursts = [];
+
+      window.__burstFX = (x, y, count = 12, customColors) => {
+        const isDay = rootEl.getAttribute('data-theme') === 'day';
+        const palette = customColors || (isDay ? ['#ffd447', '#ff69ad', '#53f0c8'] : ['#ffe074', '#ff9be2', '#84fce0']);
+        for (let i = 0; i < count; i++) {
+          const ang = (Math.PI * 2 * i) / count + (Math.random() - 0.5) * 0.5;
+          const spd = 1.6 + Math.random() * 3.4;
+          bursts.push({
+            x, y,
+            vx: Math.cos(ang) * spd,
+            vy: Math.sin(ang) * spd - 1.5,
+            life: 1,
+            s: Math.random() > 0.4 ? 4 : 3,
+            color: palette[i % palette.length]
+          });
+        }
+      };
+
+      document.addEventListener('click', (e) => {
+        if (e.target.closest('.btn, .links a, summary') && e.clientX) {
+          window.__burstFX(e.clientX, e.clientY, 12);
+        }
+      });
+
+      let lastDust = 0;
+      window.addEventListener('pointermove', (e) => {
+        if (e.pointerType !== 'mouse') return;
+        const now = performance.now();
+        if (now - lastDust < 65) return;
+        lastDust = now;
+        const isDay = rootEl.getAttribute('data-theme') === 'day';
+        bursts.push({
+          x: e.clientX, y: e.clientY,
+          vx: (Math.random() - 0.5) * 0.6,
+          vy: isDay ? 0.5 : -0.5,
+          life: 0.75,
+          s: 3,
+          color: isDay ? '#ffd447' : '#ff9be2'
+        });
+      }, { passive: true });
+
+      const frame = (t) => {
+        ctx.clearRect(0, 0, W, H);
+        const isDay = rootEl.getAttribute('data-theme') === 'day';
+
+        for (let i = 0; i < ambient.length; i++) {
+          const p = ambient[i];
+          if (isDay) {
+            p.x += p.vx + Math.sin(t * 0.0012 + p.phase) * 0.35;
+            p.y += p.vy;
+            if (p.y > H + 10) { p.y = -10; p.x = Math.random() * W; }
+            if (p.x > W + 10) p.x = -10;
+            if (p.x < -10) p.x = W + 10;
+            ctx.globalAlpha = 0.72;
+            ctx.fillStyle = i % 3 === 0 ? '#ffd447' : (i % 2 === 0 ? '#ff8cc6' : '#ffffff');
+          } else {
+            p.x += Math.sin(t * 0.0016 + p.phase) * 0.45;
+            p.y -= p.vy * 0.75;
+            if (p.y < -10) { p.y = H + 10; p.x = Math.random() * W; }
+            ctx.globalAlpha = 0.45 + 0.45 * Math.sin(t * 0.004 + p.phase);
+            ctx.fillStyle = i % 3 === 0 ? '#84fce0' : (i % 2 === 0 ? '#ff9be2' : '#ffe074');
+          }
+          ctx.fillRect(Math.round(p.x / 2) * 2, Math.round(p.y / 2) * 2, p.s, p.s);
+        }
+
+        for (let i = bursts.length - 1; i >= 0; i--) {
+          const b = bursts[i];
+          b.x += b.vx;
+          b.y += b.vy;
+          b.vy += 0.11;
+          b.life -= 0.032;
+          if (b.life <= 0) { bursts.splice(i, 1); continue; }
+          ctx.globalAlpha = Math.max(0, b.life);
+          ctx.fillStyle = b.color;
+          ctx.fillRect(Math.round(b.x / 2) * 2, Math.round(b.y / 2) * 2, b.s, b.s);
+        }
+        ctx.globalAlpha = 1;
+        requestAnimationFrame(frame);
+      };
+      requestAnimationFrame(frame);
+    }
+  }
+
+  // =========================================================
+  // AUTO-COPY EMAIL / PHONE & LINK ZALO ON CLICK
+  // =========================================================
+  (() => {
+    const toast = document.getElementById('copy-toast');
+    let toastTimer = null;
+
+    const showToast = (msg) => {
+      if (!toast) return;
+      toast.textContent = msg;
+      toast.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.remove('show'), 2200);
+    };
+
+    const legacyCopy = (text) => {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.setAttribute('readonly', '');
+      ta.style.position = 'fixed';
+      ta.style.top = '-9999px';
+      ta.style.left = '-9999px';
+      document.body.appendChild(ta);
+      ta.select();
+      ta.setSelectionRange(0, text.length);
+      let ok = false;
+      try { ok = document.execCommand('copy'); } catch (_) { ok = false; }
+      document.body.removeChild(ta);
+      return ok;
+    };
+
+    const copyText = (text) => {
+      legacyCopy(text);
+      if (window.location.protocol !== 'file:' && window.isSecureContext && navigator.clipboard && navigator.clipboard.writeText) {
+        return navigator.clipboard.writeText(text).catch(() => false);
+      }
+      return Promise.resolve(true);
+    };
+
+    document.querySelectorAll('.copy-trigger[data-copy]').forEach((el) => {
+      el.addEventListener('click', (e) => {
+        const value = el.getAttribute('data-copy');
+        if (!value) return;
+        const kind = el.getAttribute('data-copy-kind');
+        // Keep mail links on-page cleanly after copying; let Zalo link open in new tab normally
+        if (kind === 'email') e.preventDefault();
+        copyText(value);
+        if (!el.dataset.origText) el.dataset.origText = el.textContent;
+        el.textContent = kind === 'zalo' ? '✓ Đã copy · Mở Zalo' : '✓ Đã copy email';
+        clearTimeout(el._labelTimer);
+        el._labelTimer = setTimeout(() => { el.textContent = el.dataset.origText; }, 1800);
+        showToast(kind === 'zalo' ? `✓ Đã copy SĐT: ${value} · Đang mở Zalo` : `✓ Đã copy email: ${value}`);
+      });
+    });
+  })();
+</script>
+</body>
+</html>
