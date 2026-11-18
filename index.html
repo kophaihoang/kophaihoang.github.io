@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <title>Lê Việt Hoàng — Portfolio</title>
 <meta name="description" content="Lê Việt Hoàng, sinh viên năm cuối Hệ thống thông tin quản lý. Các dự án làm cùng AI: công cụ làm video, chatbot bán hàng, quy trình tự động trên n8n." />
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Crect width='16' height='16' fill='%2323174c'/%3E%3Crect x='2' y='2' width='12' height='12' fill='%233d2473'/%3E%3Crect x='7' y='3' width='2' height='2' fill='%23ffe074'/%3E%3Crect x='5' y='5' width='6' height='2' fill='%23ffe074'/%3E%3Crect x='3' y='7' width='10' height='2' fill='%23ff9be2'/%3E%3Crect x='5' y='9' width='6' height='2' fill='%23ffe074'/%3E%3Crect x='7' y='11' width='2' height='2' fill='%23ffe074'/%3E%3C/svg%3E" />
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Cstyle%3E.f%7Bfill:%23F4F4F6%7D@media(prefers-color-scheme:light)%7B.f%7Bfill:%2318181B%7D%7D%3C/style%3E%3Crect class='f' x='7' y='1' width='2' height='3'/%3E%3Crect class='f' x='7' y='12' width='2' height='3'/%3E%3Crect class='f' x='1' y='7' width='3' height='2'/%3E%3Crect class='f' x='12' y='7' width='3' height='2'/%3E%3Crect class='f' x='5' y='4' width='2' height='2'/%3E%3Crect class='f' x='9' y='4' width='2' height='2'/%3E%3Crect class='f' x='4' y='5' width='2' height='2'/%3E%3Crect class='f' x='10' y='5' width='2' height='2'/%3E%3Crect class='f' x='4' y='9' width='2' height='2'/%3E%3Crect class='f' x='10' y='9' width='2' height='2'/%3E%3Crect class='f' x='5' y='10' width='2' height='2'/%3E%3Crect class='f' x='9' y='10' width='2' height='2'/%3E%3Crect x='12' y='12' width='3' height='3' fill='%23FF4D00'/%3E%3C/svg%3E" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=VT323&display=swap" rel="stylesheet" />
@@ -987,12 +987,12 @@
     animation: cursorBlink 0.7s steps(2, end) infinite;
   }
 
-  /* SCREEN 2: Pixel Person at Laptop + Pixel Cat */
+  /* SCREEN 2: Pixel Person at Laptop + Animated Pixel Cat */
   .scr-desk {
     padding: 0;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(180deg, #21144b 0%, #3d2170 60%, #7d3c8c 100%);
+    background: linear-gradient(180deg, #271957 0%, #44287c 60%, #864396 100%);
   }
   .desk-scene {
     width: 100%;
@@ -1001,33 +1001,92 @@
     shape-rendering: crispEdges;
   }
   .desk-cat {
-    animation: petIdle 1.2s steps(2, end) infinite;
+    animation: catHop 1.5s steps(4, end) infinite;
     transform-box: fill-box;
     transform-origin: center bottom;
   }
-  .desk-tail {
-    animation: tailWag 1.1s steps(2, end) infinite;
+  .desk-cat-head {
+    animation: catHeadJam 0.9s steps(2, end) infinite;
     transform-box: fill-box;
-    transform-origin: left bottom;
+    transform-origin: center bottom;
   }
-  .desk-ponytail {
-    animation: ponytailSway 1.7s steps(2, end) infinite;
+  .desk-cat-ear-l {
+    animation: catEarFlick 1.3s steps(2, end) infinite;
+    transform-box: fill-box;
+    transform-origin: center bottom;
+  }
+  .desk-cat-ear-r {
+    animation: catEarFlick 1.3s steps(2, end) infinite 0.45s;
+    transform-box: fill-box;
+    transform-origin: center bottom;
+  }
+  .desk-cat-eye {
+    animation: catBlink 3.1s steps(1, end) infinite;
+    transform-box: fill-box;
+    transform-origin: center center;
+  }
+  .desk-cat-paw {
+    animation: catPawTap 0.42s steps(2, end) infinite;
     transform-box: fill-box;
     transform-origin: right top;
   }
-  @keyframes ponytailSway {
+  .desk-tail {
+    animation: tailWag 0.56s steps(3, end) infinite;
+    transform-box: fill-box;
+    transform-origin: left bottom;
+  }
+  .desk-cat-heart {
+    animation: catHeartFloat 1.8s steps(4, end) infinite;
+    transform-box: fill-box;
+    transform-origin: center center;
+  }
+  .desk-cat-spark {
+    animation: catSparkFloat 1.4s steps(3, end) infinite 0.6s;
+    transform-box: fill-box;
+    transform-origin: center center;
+  }
+  @keyframes catHop {
+    0%, 100% { transform: translateY(0) scale(1, 1); }
+    25% { transform: translateY(1px) scale(1.04, 0.94); }
+    50% { transform: translateY(-4px) scale(0.97, 1.05); }
+    75% { transform: translateY(-1px) scale(1, 1); }
+  }
+  @keyframes catHeadJam {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    50% { transform: translate(-1px, -1px) rotate(-5deg); }
+  }
+  @keyframes catEarFlick {
+    0%, 70%, 100% { transform: rotate(0deg) translateY(0); }
+    85% { transform: rotate(-12deg) translateY(-1px); }
+  }
+  @keyframes catBlink {
+    0%, 88%, 100% { transform: scaleY(1); }
+    92%, 96% { transform: scaleY(0.25); }
+  }
+  @keyframes catPawTap {
     0%, 100% { transform: translateY(0); }
-    50% { transform: translate(-1px, 1px); }
+    50% { transform: translateY(-2px); }
+  }
+  @keyframes catHeartFloat {
+    0% { transform: translate(0, 2px); opacity: 0; }
+    25% { transform: translate(-1px, -1px); opacity: 1; }
+    75% { transform: translate(1px, -6px); opacity: 1; }
+    100% { transform: translate(0, -9px); opacity: 0; }
+  }
+  @keyframes catSparkFloat {
+    0% { transform: translateY(2px) scale(0.8); opacity: 0; }
+    35% { transform: translateY(-2px) scale(1); opacity: 1; }
+    100% { transform: translateY(-7px) scale(0.8); opacity: 0; }
   }
   .desk-hands {
-    animation: handsType 0.45s steps(2, end) infinite;
+    animation: handsType 0.42s steps(2, end) infinite;
   }
   .desk-screen-glow {
     animation: screenFlicker 1.8s steps(3, end) infinite;
   }
   @keyframes tailWag {
-    0%, 100% { transform: rotate(0deg); }
-    50% { transform: rotate(10deg); }
+    0%, 100% { transform: rotate(-14deg); }
+    50% { transform: rotate(18deg); }
   }
   @keyframes handsType {
     0%, 100% { transform: translateY(0); }
@@ -2179,8 +2238,14 @@
     .btn.primary::after,
     .role-cursor,
     .desk-cat,
+    .desk-cat-head,
+    .desk-cat-ear-l,
+    .desk-cat-ear-r,
+    .desk-cat-eye,
+    .desk-cat-paw,
     .desk-tail,
-    .desk-ponytail,
+    .desk-cat-heart,
+    .desk-cat-spark,
     .desk-hands,
     .desk-screen-glow,
     .start-emblem,
@@ -2406,128 +2471,162 @@
               </div>
             </div>
 
-            <!-- MÀN HÌNH 2: Nhân vật pixel & mèo quay ngang bên bàn laptop -->
-            <div class="g-slide scr-desk" data-slide="1" role="tabpanel" aria-label="Màn hình 2: Nhân vật pixel và mèo ngồi bàn làm việc">
+            <!-- MÀN HÌNH 2: Nhân vật pixel tóc ngắn & mèo nhiều hoạt ảnh bên bàn laptop -->
+            <div class="g-slide scr-desk" data-slide="1" role="tabpanel" aria-label="Màn hình 2: Nhân vật pixel tóc ngắn và mèo cử động nhiều bên bàn làm việc">
               <svg class="desk-scene" viewBox="0 0 90 160" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges">
-                <!-- Room Wall -->
-                <rect x="0" y="0" width="90" height="144" fill="#21144b"/>
-                <rect x="8" y="0" width="4" height="144" fill="#261856"/>
-                <rect x="24" y="0" width="4" height="144" fill="#261856"/>
-                <rect x="40" y="0" width="4" height="144" fill="#261856"/>
-                <rect x="56" y="0" width="4" height="144" fill="#261856"/>
-                <rect x="72" y="0" width="4" height="144" fill="#261856"/>
+                <!-- Room Wall (contrasted twilight slate-plum so foreground pops clearly) -->
+                <rect x="0" y="0" width="90" height="144" fill="#291a59"/>
+                <rect x="8" y="0" width="4" height="144" fill="#32216b"/>
+                <rect x="24" y="0" width="4" height="144" fill="#32216b"/>
+                <rect x="40" y="0" width="4" height="144" fill="#32216b"/>
+                <rect x="56" y="0" width="4" height="144" fill="#32216b"/>
+                <rect x="72" y="0" width="4" height="144" fill="#32216b"/>
+                <!-- Subtle soft ambient wall glow behind developer & desk -->
+                <rect x="12" y="60" width="72" height="62" fill="#3b267a" fill-opacity="0.45"/>
 
                 <!-- Twilight Window -->
-                <rect x="22" y="14" width="58" height="44" fill="#170e36"/>
-                <rect x="24" y="16" width="54" height="40" fill="#2c195c"/>
-                <rect x="24" y="34" width="54" height="11" fill="#7c3d95"/>
-                <rect x="24" y="45" width="54" height="11" fill="#d9678a"/>
+                <rect x="21" y="13" width="60" height="47" fill="#5c42a8"/>
+                <rect x="22" y="14" width="58" height="44" fill="#1b103d"/>
+                <rect x="24" y="16" width="54" height="40" fill="#2e1b63"/>
+                <rect x="24" y="34" width="54" height="11" fill="#82429c"/>
+                <rect x="24" y="45" width="54" height="11" fill="#e06c8e"/>
                 <rect x="31" y="22" width="2" height="2" fill="#ffe074"/>
                 <rect x="44" y="27" width="2" height="2" fill="#ff9be2"/>
                 <rect x="64" y="20" width="6" height="6" fill="#ffe074"/>
-                <rect x="66" y="22" width="4" height="4" fill="#2c195c"/>
-                <rect x="50" y="14" width="2" height="44" fill="#4f368f"/>
-                <rect x="22" y="56" width="58" height="4" fill="#6346ab"/>
-                <!-- Tiny pixel plant on windowsill -->
-                <rect x="66" y="48" width="4" height="5" fill="#7ef4cf"/>
+                <rect x="66" y="22" width="4" height="4" fill="#2e1b63"/>
+                <rect x="50" y="14" width="2" height="44" fill="#6348b5"/>
+                <rect x="21" y="56" width="60" height="4" fill="#7f62cc"/>
+                <!-- Crisp tiny pixel plant on windowsill -->
+                <rect x="66" y="47" width="4" height="6" fill="#84fce0"/>
+                <rect x="65" y="49" width="2" height="3" fill="#5fd6ba"/>
                 <rect x="65" y="53" width="6" height="3" fill="#ff8cc6"/>
+                <rect x="67" y="45" width="2" height="2" fill="#ffe074"/>
 
                 <!-- Floor & Baseboard -->
-                <rect x="0" y="144" width="90" height="16" fill="#160c36"/>
-                <rect x="0" y="144" width="90" height="2" fill="#3a236b"/>
-                <rect x="6" y="148" width="42" height="2" fill="#291752"/>
-                <rect x="50" y="152" width="34" height="2" fill="#291752"/>
+                <rect x="0" y="144" width="90" height="16" fill="#1e1145"/>
+                <rect x="0" y="144" width="90" height="2" fill="#543996"/>
+                <rect x="6" y="148" width="42" height="2" fill="#3b2578"/>
+                <rect x="50" y="152" width="34" height="2" fill="#3b2578"/>
 
                 <!-- Soft Screen Light Cone shining LEFT toward developer -->
-                <polygon class="desk-screen-glow" points="58,85 57,102 31,94 31,74" fill="#84fce0" fill-opacity="0.14"/>
+                <polygon class="desk-screen-glow" points="58,85 57,102 31,94 31,74" fill="#84fce0" fill-opacity="0.18"/>
 
-                <!-- Side-Profile Gaming/Office Chair (left, facing right) -->
-                <rect x="12" y="83" width="5" height="31" fill="#36226b"/>
-                <rect x="14" y="85" width="2" height="27" fill="#5e43ad"/>
-                <rect x="13" y="112" width="18" height="5" fill="#48308a"/>
-                <rect x="20" y="117" width="4" height="24" fill="#2b1b59"/>
-                <rect x="14" y="141" width="16" height="3" fill="#3d2875"/>
+                <!-- Side-Profile Gaming/Office Chair (crisp highlighted outline) -->
+                <rect x="11" y="82" width="6" height="33" fill="#573da6"/>
+                <rect x="11" y="82" width="2" height="33" fill="#8e74e8"/>
+                <rect x="14" y="85" width="2" height="27" fill="#6d52c7"/>
+                <rect x="12" y="112" width="19" height="5" fill="#6147ad"/>
+                <rect x="12" y="112" width="19" height="1" fill="#9277e8"/>
+                <rect x="20" y="117" width="4" height="24" fill="#463087"/>
+                <rect x="21" y="117" width="1" height="24" fill="#7c63cf"/>
+                <rect x="13" y="141" width="18" height="3" fill="#6348b5"/>
 
                 <!-- Developer in Side Profile (sitting on left, facing RIGHT ->) -->
-                <!-- Hair + Front bangs + Crisp Side Ponytail tied back -->
-                <rect x="18" y="64" width="14" height="7" fill="#100924"/>
-                <rect x="19" y="63" width="11" height="2" fill="#5a41a8"/>
-                <rect x="29" y="66" width="4" height="5" fill="#100924"/>
-                <rect x="16" y="67" width="5" height="9" fill="#100924"/>
-                <rect x="17" y="66" width="3" height="2" fill="#5a41a8"/>
-                <!-- Hair tie + Flowing Ponytail cleanly clear of chair backrest -->
-                <rect x="14" y="69" width="3" height="4" fill="#ff69ad"/>
-                <rect x="15" y="70" width="1" height="2" fill="#ffd447"/>
-                <g class="desk-ponytail">
-                  <rect x="8" y="68" width="6" height="5" fill="#100924"/>
-                  <rect x="9" y="67" width="5" height="2" fill="#6d52bd"/>
-                  <rect x="5" y="72" width="6" height="6" fill="#100924"/>
-                  <rect x="6" y="71" width="4" height="2" fill="#5a41a8"/>
-                  <rect x="4" y="77" width="5" height="6" fill="#100924"/>
-                  <rect x="5" y="77" width="2" height="4" fill="#5a41a8"/>
-                  <rect x="3" y="82" width="4" height="4" fill="#281952"/>
-                </g>
+                <!-- Crisp Short Male Hair (no ponytail!) with high-contrast contour highlight -->
+                <rect x="18" y="63" width="14" height="2" fill="#7a63cc"/>
+                <rect x="17" y="65" width="2" height="9" fill="#6149b3"/>
+                <rect x="18" y="64" width="14" height="7" fill="#150c30"/>
+                <rect x="29" y="66" width="4" height="4" fill="#150c30"/>
+                <rect x="29" y="65" width="3" height="2" fill="#7a63cc"/>
+                <rect x="18" y="69" width="3" height="6" fill="#150c30"/>
+                <rect x="21" y="71" width="2" height="3" fill="#150c30"/>
                 <!-- Face & nose facing right -->
                 <rect x="20" y="71" width="12" height="13" fill="#ffd1b3"/>
+                <rect x="20" y="74" width="2" height="5" fill="#ebb08f"/>
                 <rect x="32" y="77" width="2" height="3" fill="#ffd1b3"/>
                 <!-- Side-profile glasses + cyan screen reflection -->
-                <rect x="21" y="75" width="6" height="2" fill="#1c133c"/>
-                <rect x="27" y="74" width="5" height="4" fill="#1c133c"/>
+                <rect x="21" y="75" width="6" height="2" fill="#180e3b"/>
+                <rect x="27" y="74" width="5" height="4" fill="#180e3b"/>
                 <rect x="28" y="75" width="3" height="2" fill="#84fce0"/>
-                <!-- Hoodie Torso leaning slightly forward -->
-                <rect x="17" y="84" width="15" height="27" fill="#5b43ad"/>
-                <rect x="15" y="84" width="5" height="6" fill="#745cd4"/>
-                <rect x="24" y="86" width="8" height="21" fill="#6b51c4"/>
+                <!-- Hoodie Torso with crisp shoulder/hood rim -->
+                <rect x="16" y="84" width="16" height="27" fill="#644ab8"/>
+                <rect x="15" y="84" width="5" height="6" fill="#8b70eb"/>
+                <rect x="16" y="84" width="1" height="24" fill="#9b82f5"/>
+                <rect x="24" y="86" width="8" height="21" fill="#785fd1"/>
                 <!-- Seated Legs & Pixel Sneakers under desk -->
-                <rect x="21" y="106" width="17" height="7" fill="#2c225c"/>
-                <rect x="32" y="113" width="6" height="26" fill="#2c225c"/>
+                <rect x="20" y="106" width="18" height="7" fill="#433182"/>
+                <rect x="20" y="106" width="18" height="1" fill="#7762c4"/>
+                <rect x="32" y="113" width="6" height="26" fill="#433182"/>
+                <rect x="36" y="113" width="2" height="26" fill="#624fb0"/>
                 <rect x="32" y="139" width="10" height="5" fill="#ff69ad"/>
                 <rect x="32" y="142" width="10" height="2" fill="#ffffff"/>
                 <!-- Arm & Typing Hands reaching right to keyboard -->
-                <rect x="22" y="89" width="8" height="10" fill="#745cd4"/>
-                <rect x="28" y="96" width="13" height="5" fill="#745cd4"/>
+                <rect x="22" y="89" width="8" height="10" fill="#8b70eb"/>
+                <rect x="28" y="96" width="13" height="5" fill="#8b70eb"/>
                 <g class="desk-hands">
                   <rect x="41" y="98" width="5" height="3" fill="#ffd1b3"/>
                 </g>
 
-                <!-- Side-Profile Desk -->
-                <rect x="34" y="104" width="50" height="5" fill="#9a6ac4"/>
-                <rect x="34" y="109" width="50" height="4" fill="#623c8f"/>
-                <rect x="38" y="113" width="5" height="31" fill="#402563"/>
-                <rect x="76" y="113" width="5" height="31" fill="#402563"/>
+                <!-- Side-Profile Desk (high contrast top rim & legs) -->
+                <rect x="34" y="104" width="50" height="1" fill="#cf9ff5"/>
+                <rect x="34" y="105" width="50" height="4" fill="#aa78d4"/>
+                <rect x="34" y="109" width="50" height="4" fill="#6c449e"/>
+                <rect x="38" y="113" width="5" height="31" fill="#4f3078"/>
+                <rect x="38" y="113" width="1" height="31" fill="#7b56b0"/>
+                <rect x="76" y="113" width="5" height="31" fill="#4f3078"/>
+                <rect x="76" y="113" width="1" height="31" fill="#7b56b0"/>
 
                 <!-- Side-Profile Laptop (facing LEFT toward developer!) -->
-                <rect x="41" y="101" width="18" height="3" fill="#c5b4f3"/>
+                <rect x="41" y="101" width="18" height="3" fill="#ded3ff"/>
                 <rect x="42" y="100" width="9" height="1" fill="#ffe074"/>
-                <!-- Angled laptop lid + glowing screen facing left -->
-                <rect x="57" y="96" width="3" height="6" fill="#201447"/>
-                <rect x="58" y="90" width="3" height="7" fill="#201447"/>
-                <rect x="59" y="84" width="3" height="7" fill="#201447"/>
+                <!-- Angled laptop lid + crisp highlight back edge + glowing screen -->
+                <rect x="57" y="96" width="3" height="6" fill="#452e87"/>
+                <rect x="58" y="90" width="3" height="7" fill="#452e87"/>
+                <rect x="59" y="84" width="3" height="7" fill="#452e87"/>
+                <rect x="61" y="84" width="1" height="7" fill="#8f77e3"/>
+                <rect x="60" y="90" width="1" height="7" fill="#8f77e3"/>
                 <rect class="desk-screen-glow" x="56" y="96" width="2" height="5" fill="#84fce0"/>
                 <rect class="desk-screen-glow" x="57" y="90" width="2" height="6" fill="#84fce0"/>
                 <rect class="desk-screen-glow" x="58" y="85" width="2" height="5" fill="#84fce0"/>
 
-                <!-- Cute Pixel Cat in SIDE PROFILE (sitting on right edge of desk, facing LEFT <-) -->
+                <!-- Floating Animated Pixel Heart & Sparkle above Cat -->
+                <g class="desk-cat-heart">
+                  <rect x="70" y="75" width="2" height="2" fill="#ff69ad"/>
+                  <rect x="74" y="75" width="2" height="2" fill="#ff69ad"/>
+                  <rect x="69" y="77" width="8" height="2" fill="#ff69ad"/>
+                  <rect x="70" y="79" width="6" height="1" fill="#ff69ad"/>
+                  <rect x="72" y="80" width="2" height="1" fill="#ff69ad"/>
+                  <rect x="70" y="76" width="1" height="1" fill="#ffd4f2"/>
+                </g>
+                <g class="desk-cat-spark">
+                  <rect x="81" y="78" width="1" height="3" fill="#ffe074"/>
+                  <rect x="80" y="79" width="3" height="1" fill="#ffe074"/>
+                </g>
+
+                <!-- Super-Animated Pixel Cat in SIDE PROFILE (sitting on desk, facing LEFT <-) -->
                 <g class="desk-cat">
-                  <!-- Pointed pixel ears on head -->
-                  <rect x="66" y="86" width="2" height="3" fill="#ffd447"/>
-                  <rect x="71" y="86" width="2" height="3" fill="#ffd447"/>
-                  <!-- Side-profile head facing left -->
-                  <rect x="65" y="89" width="9" height="8" fill="#ffd447"/>
-                  <!-- Eye & pink nose/cheek facing left -->
-                  <rect x="67" y="91" width="2" height="2" fill="#211548"/>
-                  <rect x="64" y="93" width="1" height="2" fill="#ff69ad"/>
-                  <rect x="67" y="94" width="2" height="1" fill="#ff69ad"/>
-                  <!-- Plump side-profile sitting body + paws -->
+                  <!-- Animated Head + Independent Twitching Ears + Blinking Eye -->
+                  <g class="desk-cat-head">
+                    <g class="desk-cat-ear-l">
+                      <rect x="66" y="85" width="2" height="4" fill="#ffd447"/>
+                      <rect x="66" y="85" width="2" height="1" fill="#fff4a3"/>
+                    </g>
+                    <g class="desk-cat-ear-r">
+                      <rect x="71" y="85" width="2" height="4" fill="#f0a322"/>
+                      <rect x="71" y="85" width="2" height="1" fill="#ffd447"/>
+                    </g>
+                    <rect x="65" y="89" width="9" height="8" fill="#ffd447"/>
+                    <rect x="66" y="89" width="7" height="1" fill="#fff4a3"/>
+                    <rect class="desk-cat-eye" x="67" y="91" width="2" height="2" fill="#190d3a"/>
+                    <rect x="64" y="93" width="1" height="2" fill="#ff69ad"/>
+                    <rect x="67" y="94" width="2" height="1" fill="#ff69ad"/>
+                  </g>
+                  <!-- Plump side-profile body with golden belly highlight -->
                   <rect x="67" y="97" width="11" height="6" fill="#ffd447"/>
                   <rect x="69" y="95" width="8" height="3" fill="#ffd447"/>
-                  <rect x="66" y="102" width="3" height="2" fill="#ffd447"/>
-                  <rect x="74" y="102" width="4" height="2" fill="#ffd447"/>
-                  <!-- Animated wagging pink tail on the right -->
+                  <rect x="68" y="98" width="4" height="4" fill="#fff4a3"/>
+                  <rect x="74" y="97" width="4" height="5" fill="#f0a322"/>
+                  <!-- Front tapping paw + back paw -->
+                  <g class="desk-cat-paw">
+                    <rect x="65" y="102" width="4" height="2" fill="#ffd447"/>
+                    <rect x="65" y="103" width="1" height="1" fill="#fff4a3"/>
+                  </g>
+                  <rect x="74" y="102" width="4" height="2" fill="#f0a322"/>
+                  <!-- Energetic wagging pink tail -->
                   <g class="desk-tail">
                     <rect x="78" y="99" width="3" height="2" fill="#ff69ad"/>
-                    <rect x="80" y="95" width="2" height="5" fill="#ff69ad"/>
-                    <rect x="81" y="93" width="2" height="3" fill="#ffd447"/>
+                    <rect x="80" y="94" width="2" height="6" fill="#ff69ad"/>
+                    <rect x="81" y="92" width="2" height="3" fill="#ffe074"/>
                   </g>
                 </g>
               </svg>
